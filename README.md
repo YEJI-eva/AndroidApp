@@ -1,7 +1,8 @@
 #부산 맛집 소개 프로젝트
-<hr>
 
-####Intro
+
+###Intro
+
 <hr>
 
 	-  프로젝트명  : 
@@ -15,30 +16,33 @@
 </br>
 
 </br>
+
 <hr>
 
 ####Project Process
+
 <hr>
-- 
-- 
+
+
 
 
 </br>
 <hr>
 
-###Member
+####Member
+
 <hr>
 
  - #####김선우
-  - Position : 
-  - Stack :   
-  - Work 
+  - Position :? 
+  - Stack :?   
+  - Work ?
     -  Map 컴포넌트 설계 및 구현
  	-  Map API를 이용 음식점별 Default map 구성
  	-  실시간 위치 기반 Animated Marker Position 구현
 
-
 </br>
+
  - #####김예지
   - Position : 
   - Stack :   
@@ -46,6 +50,7 @@
   
  
  </br>
+ 
  - #####남동호
   - Position : 
   - Stack :   
@@ -59,6 +64,7 @@
   
   
 </br> 
+
  - #####안재영
   - Position : 
   - Stack :   
@@ -66,6 +72,7 @@
     -  
 
 </br>
+
  - #####임채빈
   - Position : 
   - Stack :   
@@ -77,7 +84,9 @@
 
 
 <hr>
+
 ####데이터베이스 설계
+
 <hr>
 
 
@@ -85,5 +94,7 @@
 
 </br>
 <hr>
+
 ####구현 기능 소개
+
 <hr>
