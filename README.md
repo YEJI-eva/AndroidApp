@@ -12,7 +12,8 @@
 	-  프로토콜    : HTTP, TCP/IP
 	-  개발언어    : JAVA,HTML, PHP
 	-  데이터베이스: MySQL 
-
+	-  API        : Daum, Naver, Google
+ 
 </br>
 
 </br>
@@ -34,8 +35,8 @@
 <hr>
 
  - ##### 김선우
-   - Stack :?   
-   - Work ?
+   - Stack    
+   - Work 
     -  Map 컴포넌트 설계 및 구현
     -  Map API를 이용 음식점별 Default map 구성
     -  실시간 위치 기반 Animated Marker Position 구현
@@ -45,34 +46,44 @@
  - ##### 김예지
    - Stack :   
    - Work 
-  
- 
+    -  DB스키마 사전 설계 
+    -  Naver Login API 연동
+    -  BottomNavigation Bar 구현 및 연동
+    
  </br>
  
  - ##### 남동호
    - Stack :   
    - Work 
- 
+    -  관계형 데이터베이스 설계 및 구축
+    -  관계 설정을 기반으로 한 데이터 출력
+    -  테이블 간의 연결 구조 구현
+    -  회원가입/탈퇴, 로그인/아웃 세션 기능 구현
+
+    
  </br>
  
  - ##### 서영상
    - Stack :   
    - Work 
-  
+    -  앱 전체 UX 설계
   
 </br> 
 
  - ##### 안재영
    - Stack :   
    - Work 
+    -  관계 설정을 기반으로 한 데이터 출력
+    -  Firebase를 통한 Store List구축 
+    -  페이징 처리 기능 구현
     
-
 </br>
 
  - ##### 임채빈
    - Stack :   
    - Work 
-
+    -  KaKao Login API 연동
+    -  Google Login API 연동
 </br>
 
 </br>
