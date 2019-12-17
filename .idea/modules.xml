@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/NaverLoginAPI.iml" filepath="$PROJECT_DIR$/NaverLoginAPI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/naveridlogin_android_sdk_4.2.0/naveridlogin_android_sdk_4.2.0.iml" filepath="$PROJECT_DIR$/naveridlogin_android_sdk_4.2.0/naveridlogin_android_sdk_4.2.0.iml" />
+    </modules>
+  </component>
+</project>
