@@ -40,6 +40,7 @@
      -  Map 컴포넌트 설계 및 구현
      -  Map API를 이용 음식점별 Default map 구성
      -  실시간 위치 기반 Animated Marker Position 구현
+     -  공공API를 이용한 음식점 데이터 크롤링
 
 </br>
 
@@ -77,7 +78,7 @@
      -  관계 설정을 기반으로 한 데이터 출력
      -  Firebase를 통한 Store List구축 
      -  페이징 처리 기능 구현
-     
+     -  공공API를 이용한 음식점 데이터 크롤링
 </br>
 
  - ##### 임채빈
