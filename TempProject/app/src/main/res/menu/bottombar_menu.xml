@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottomBarMap"
+        android:enabled="true"
+        android:icon="@drawable/map_icon"
+        android:title="위치" />
+    <item
+        android:id="@+id/bottomBarStore"
+        android:enabled="true"
+        android:icon="@drawable/store_icon"
+        android:title="가게정보" />
+    <item
+        android:id="@+id/bottomBarReview"
+        android:enabled="true"
+        android:icon="@drawable/review_icon"
+        android:title="리뷰" />
+</menu>
