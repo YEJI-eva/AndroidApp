@@ -2,6 +2,7 @@ package com.example.tempproject;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,7 +35,35 @@ import java.util.ArrayList;
 
 public class Store extends Fragment {
 
-    private static String IP_ADDRESS = "192.168.0.50";
+    private View view;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.store, container, false);
+        String restaurantName;
+        String restaurantAddress;
+        String tel;
+
+        Bundle bundle = getArguments();
+
+        if (bundle != null) {
+            restaurantName = bundle.getString("restaurantName");
+            restaurantAddress = bundle.getString("restaurantAddress");
+            tel = bundle.getString("tel");
+
+            TextView textView = (TextView) getActivity().findViewById(R.id.textView_store);
+            String str = restaurantName + '\n' + restaurantAddress + '\n' + tel;
+            textView.setText(str);
+            Log.d("a", restaurantName);
+            Log.d("b", restaurantAddress);
+            Log.d("c", tel);
+
+            return textView;
+        }
+        return null;
+    }
+   /* private static String IP_ADDRESS = "192.168.0.50";
     private static String TAG = "phptest";
 
     private EditText mEditTextRestaurantNum;
@@ -194,7 +224,7 @@ public class Store extends Fragment {
         } catch (JSONException e) {
             Log.d(TAG, "showResult : ", e);
         }
-    }
+    }*/
 
 
 }

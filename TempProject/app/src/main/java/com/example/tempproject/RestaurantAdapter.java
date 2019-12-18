@@ -91,15 +91,6 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Cu
             this.restaurantName = (TextView) view.findViewById(R.id.textView_list_restaurantName);
             this.address = (TextView) view.findViewById(R.id.textView_list_address);
             this.tel = (TextView) view.findViewById(R.id.textView_list_tel);
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int pos = getAdapterPosition();
-                    if(pos != RecyclerView.NO_POSITION) {
-                        RecyclerItem item = mList.get(pos);
-                    }
-                }
-            });
         }
     }
 
@@ -107,6 +98,8 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Cu
     public CustomViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_list, null);
         CustomViewHolder viewHolder = new CustomViewHolder(view);
+
+
 
         return viewHolder;
     }

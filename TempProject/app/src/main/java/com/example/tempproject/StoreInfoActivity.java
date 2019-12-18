@@ -2,14 +2,21 @@ package com.example.tempproject;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationMenu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.List;
 
 public class StoreInfoActivity extends AppCompatActivity {
 
@@ -34,16 +41,14 @@ public class StoreInfoActivity extends AppCompatActivity {
                         setFrag(0);
                         break;
                     case R.id.bottomBarStore:
-                        setFrag(0);
+                        setFrag(1);
                         break;
                     case R.id.bottomBarReview:
-                        setFrag(0);
+                        setFrag(2);
                         break;
                 }
-
                 return true;
             }
-
         });
         locationMap = new LocationMap();
         store = new Store();
@@ -51,8 +56,22 @@ public class StoreInfoActivity extends AppCompatActivity {
         setFrag(0); // 첫 프래그먼트 화면을 무엇으로 지정해줄 것인지 선택.
     }
 
+
     // 프레그먼트 교체가 일어나는 실행문
     private void setFrag(int n) {
+        Intent intent = getIntent();
+        String restaurantName = intent.getStringExtra("restaurantName");
+        String restaurantAddress = intent.getStringExtra("restaurantAddress");
+        String tel = intent.getStringExtra("tel");
+
+        Store storei = new Store();
+        Bundle bundle = new Bundle();
+        bundle.putString("restaurantName", restaurantName);
+        bundle.putString("restaurantAddress", restaurantAddress);
+        bundle.putString("tel", tel);
+
+        storei.setArguments(bundle);
+
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
         switch (n) {
@@ -62,6 +81,7 @@ public class StoreInfoActivity extends AppCompatActivity {
                 break;
             case 1:
                 ft.replace(R.id.main_frame, store);
+                ft.add(store, "storei");
                 ft.commit();
                 break;
             case 2:

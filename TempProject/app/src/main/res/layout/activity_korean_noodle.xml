@@ -15,11 +15,4 @@
         android:padding="5dp"
         android:id="@+id/listView_main_list" />
 
-    <Button
-        android:id="@+id/infoBtn"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="2dp"
-        android:layout_weight="2"
-        android:text="가게정보" />
 </LinearLayout>
