@@ -51,19 +51,28 @@ public class Store extends Fragment {
             restaurantName = bundle.getString("restaurantName");
             restaurantAddress = bundle.getString("restaurantAddress");
             tel = bundle.getString("tel");
-
-            TextView textView = (TextView) getActivity().findViewById(R.id.textView_store);
-            String str = restaurantName + '\n' + restaurantAddress + '\n' + tel;
-            textView.setText(str);
             Log.d("a", restaurantName);
             Log.d("b", restaurantAddress);
             Log.d("c", tel);
 
-            return textView;
+            TextView textView = (TextView) view.findViewById(R.id.textView_store);
+            String str = "이름: " + restaurantName + "\n" + " 주소: " + restaurantAddress + "\n" + " 전화번호: " + tel;
+            Log.d("str : ", str);
+
+            textView.setText(str);
         }
-        return null;
+
+        return view;
     }
-   /* private static String IP_ADDRESS = "192.168.0.50";
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
+    /* private static String IP_ADDRESS = "192.168.0.50";
     private static String TAG = "phptest";
 
     private EditText mEditTextRestaurantNum;

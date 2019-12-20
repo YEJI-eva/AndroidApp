@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationMenu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StoreInfoActivity extends AppCompatActivity {
@@ -57,20 +58,23 @@ public class StoreInfoActivity extends AppCompatActivity {
     }
 
 
-    // 프레그먼트 교체가 일어나는 실행문
     private void setFrag(int n) {
         Intent intent = getIntent();
         String restaurantName = intent.getStringExtra("restaurantName");
         String restaurantAddress = intent.getStringExtra("restaurantAddress");
         String tel = intent.getStringExtra("tel");
 
-        Store storei = new Store();
+        Log.d("StoreInfoAca", restaurantName);
+        Log.d("StoreInfoAcb", restaurantAddress);
+        Log.d("StoreInfoAcc", tel);
+
+
         Bundle bundle = new Bundle();
         bundle.putString("restaurantName", restaurantName);
         bundle.putString("restaurantAddress", restaurantAddress);
         bundle.putString("tel", tel);
 
-        storei.setArguments(bundle);
+        store.setArguments(bundle);
 
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
@@ -81,7 +85,6 @@ public class StoreInfoActivity extends AppCompatActivity {
                 break;
             case 1:
                 ft.replace(R.id.main_frame, store);
-                ft.add(store, "storei");
                 ft.commit();
                 break;
             case 2:
