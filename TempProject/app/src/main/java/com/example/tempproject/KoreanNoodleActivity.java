@@ -37,7 +37,7 @@ import java.util.Dictionary;
 
 public class KoreanNoodleActivity extends AppCompatActivity {
 
-    private static String IP_ADDRESS = "192.168.0.50";
+    private static String IP_ADDRESS = "192.168.0.14";
     private static String TAG = "phptest";
 
     private ArrayList<RestaurantData> mArrayList;

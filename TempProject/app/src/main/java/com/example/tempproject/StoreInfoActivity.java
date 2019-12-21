@@ -75,6 +75,7 @@ public class StoreInfoActivity extends AppCompatActivity {
         bundle.putString("tel", tel);
 
         store.setArguments(bundle);
+        locationMap.setArguments(bundle);
 
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();

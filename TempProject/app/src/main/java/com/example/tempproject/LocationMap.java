@@ -5,9 +5,12 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +28,7 @@ import java.util.List;
 
 public class LocationMap extends Fragment implements OnMapReadyCallback {
 
+
     private MapView mapView = null;
 
     public LocationMap()
@@ -36,6 +40,7 @@ public class LocationMap extends Fragment implements OnMapReadyCallback {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Nullable
@@ -48,6 +53,7 @@ public class LocationMap extends Fragment implements OnMapReadyCallback {
 
         return layout;
     }
+
 
     @Override
     public void onStart() {
@@ -95,6 +101,7 @@ public class LocationMap extends Fragment implements OnMapReadyCallback {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+
         //액티비티가 처음 생성될 때 실행되는 함수
 
         if(mapView != null)
@@ -103,13 +110,13 @@ public class LocationMap extends Fragment implements OnMapReadyCallback {
         }
     }
 
-    public static Location findGeoPoint(Context mcontext, String address) {
+    public static Location findGeoPoint(Context context, String restaurantAddress) {
         Location loc = new Location("");
-        Geocoder coder = new Geocoder(mcontext);
+        Geocoder coder = new Geocoder(context);
         List<Address> addr = null;// 한좌표에 대해 두개이상의 이름이 존재할수있기에 주소배열을 리턴받기 위해 설정
 
         try {
-            addr = coder.getFromLocationName(address, 5);
+            addr = coder.getFromLocationName(restaurantAddress, 5);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -121,6 +128,8 @@ public class LocationMap extends Fragment implements OnMapReadyCallback {
                 double lon = lating.getLongitude(); // 경도가져오기
                 loc.setLatitude(lat);
                 loc.setLongitude(lon);
+                System.out.println("안녕하세요" + lat);
+                System.out.println(lon);
             }
         }
         return loc;
@@ -128,24 +137,36 @@ public class LocationMap extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        LatLng SEOUL = new LatLng(37.56, 126.97);
+        Bundle bundle = getArguments();
+        String restaurantAddress;
+        String restaurantName;
+
+
+        restaurantName = bundle.getString("restaurantName");
+        restaurantAddress = bundle.getString("restaurantAddress");
+
+
+
+        double lon = findGeoPoint(getContext(), restaurantAddress).getLongitude();
+        double lat = findGeoPoint(getContext(), restaurantAddress).getLatitude();
+
+        Log.d("레스토랑주소는용 바로", "출력은 정상입니다.");
+        Log.d("레스토랑주소는용 바로", restaurantAddress);
+
+        LatLng store = new LatLng(lat, lon);
 
         MarkerOptions markerOptions = new MarkerOptions();
 
-        markerOptions.position(SEOUL);
+        markerOptions.position(store);
 
-        markerOptions.title("서울");
-
-        markerOptions.snippet("수도");
+        markerOptions.title(restaurantName);
 
         googleMap.addMarker(markerOptions);
 
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(SEOUL));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(store));
 
-        googleMap.animateCamera(CameraUpdateFactory.zoomTo(13));
+        googleMap.animateCamera(CameraUpdateFactory.zoomTo(17));
+
+
     }
-
-
-
-
 }
