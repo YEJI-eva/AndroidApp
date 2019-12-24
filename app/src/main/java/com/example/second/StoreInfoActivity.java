@@ -1,88 +1,101 @@
 package com.example.second;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-
-import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
+import android.widget.TextView;
+
+import com.example.second.LocationMap;
+import com.example.second.R;
+import com.example.second.Review;
+import com.example.second.Store;
+import com.google.android.material.bottomnavigation.BottomNavigationMenu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.roughike.bottombar.BottomBar;
-import com.roughike.bottombar.OnTabSelectListener;
 
-// 상의하고 수정할 부분
+import java.util.ArrayList;
+import java.util.List;
 
+public class StoreInfoActivity extends AppCompatActivity {
 
-//private BottomNavigationView bottomNavigationView; // 바텀 네이게이션뷰
-//private FragmentManager fm;
-//private FragmentTransaction ft;
-//private LocationMap locationMap;
-//private Store store;
-//private Review review;
+    private BottomNavigationView bottomNavigationView; // 바텀 네이게이션뷰
+    private FragmentManager fm;
+    private FragmentTransaction ft;
+    private LocationMap locationMap;
+    private Store store;
+    private Review review;
 
-public class StoreInfoActivity  extends FragmentActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_store_info);
 
-        private RecentFragment callLogFragment;
-        private FavoritesFragment favoritesFragment;
-        private NearbyFragmenet nearByFragment;
-        private MeFragment meFragment;
-        private FoodFragment foodFragment;
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
-
-
-            callLogFragment = new RecentFragment();
-            favoritesFragment = new FavoritesFragment();
-            nearByFragment =new NearbyFragmenet();
-            meFragment =new  MeFragment();
-            foodFragment =new FoodFragment();
-            initFragment();
-
-
-            BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
-            bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
-                @Override
-                public void onTabSelected(@IdRes int tabId) {
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-                    if(tabId==R.id.tab_recent){
-                        transaction.replace(R.id.contentContainer, callLogFragment).commit();
-                    }
-
-                    else if(tabId == R.id.tab_favorites){
-                        transaction.replace(R.id.contentContainer, favoritesFragment).commit();
-
-                    }
-
-                    else if(tabId == R.id.tab_nearby){
-                        transaction.replace(R.id.contentContainer, nearByFragment).commit();
-                    }
-                    else if(tabId == R.id.tab_me){
-                        transaction.replace(R.id.contentContainer,meFragment).commit();
-                    }
-                    else if(tabId == R.id.tab_food){
-                        transaction.replace(R.id.contentContainer, foodFragment).commit();
-                    } else{
-                        transaction.replace(R.id.contentContainer, callLogFragment).commit();
-                    }
+        bottomNavigationView = findViewById(R.id.bottomNavi);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.bottomBarMap:
+                        setFrag(0);
+                        break;
+                    case R.id.bottomBarStore:
+                        setFrag(1);
+                        break;
+                    case R.id.bottomBarReview:
+                        setFrag(2);
+                        break;
                 }
-            });
-        }
-    /*
-     App 실행시 보여지는 Fragment 설정.
-    */
-        public void initFragment(){
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.add(R.id.contentContainer, callLogFragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
+                return true;
+            }
+        });
+        locationMap = new LocationMap();
+        store = new Store();
+        review = new Review();
+        setFrag(0); // 첫 프래그먼트 화면을 무엇으로 지정해줄 것인지 선택.
+    }
+
+
+    private void setFrag(int n) {
+        Intent intent = getIntent();
+        String restaurantName = intent.getStringExtra("restaurantName");
+        String restaurantAddress = intent.getStringExtra("restaurantAddress");
+        String tel = intent.getStringExtra("tel");
+
+        Log.d("StoreInfoAca", restaurantName);
+        Log.d("StoreInfoAcb", restaurantAddress);
+        Log.d("StoreInfoAcc", tel);
+
+
+        Bundle bundle = new Bundle();
+        bundle.putString("restaurantName", restaurantName);
+        bundle.putString("restaurantAddress", restaurantAddress);
+        bundle.putString("tel", tel);
+
+        store.setArguments(bundle);
+        locationMap.setArguments(bundle);
+
+        fm = getSupportFragmentManager();
+        ft = fm.beginTransaction();
+        switch (n) {
+            case 0:
+                ft.replace(R.id.main_frame, locationMap);
+                ft.commit();
+                break;
+            case 1:
+                ft.replace(R.id.main_frame, store);
+                ft.commit();
+                break;
+            case 2:
+                ft.replace(R.id.main_frame, review);
+                ft.commit();
+                break;
         }
     }
+}

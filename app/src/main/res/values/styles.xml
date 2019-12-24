@@ -14,6 +14,7 @@
     <style name="SplashTheme" parent="@android:style/Theme.Light.NoTitleBar">
         <item name="android:windowBackground">@drawable/restaurant_icon</item>
     </style>
+
     <style name="Button.Menu" parent="Button">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_weight">1</item>

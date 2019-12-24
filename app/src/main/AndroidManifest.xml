@@ -32,10 +32,7 @@ package="com.example.second">
                 </activity>
 
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity android:name=".LocationActivity" />
         <activity android:name=".PickChineseMenuActivity" />
@@ -43,6 +40,8 @@ package="com.example.second">
         <activity android:name=".PickKoreanMenuActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
+        <activity android:name=".KoreanNoodleActivity" />
+        <activity android:name=".StoreInfoActivity" />
 
     </application>
 

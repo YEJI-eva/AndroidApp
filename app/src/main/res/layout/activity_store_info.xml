@@ -6,18 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavi"
         android:layout_width="match_parent"
         android:layout_height="59dp"
-        app:itemIconTint="#000000"
-        app:itemTextColor="#000000"
+        app:itemBackground="@color/colorAccent"
+        app:itemIconTint="#F3AAC4"
+        app:itemTextColor="@color/common_google_signin_btn_text_dark_focused"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        app:menu="@menu/bottombar_menu" />
 
     <FrameLayout
         android:id="@+id/main_frame"
