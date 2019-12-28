@@ -28,25 +28,25 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class PickKoreanMenuActivity extends AppCompatActivity {
-/*
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pick_korean_menu);
+public class PickWesternMenuActivity extends AppCompatActivity {
+    /*
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_pick_korean_menu);
 
-        final Button noodleBtn = (Button) findViewById(R.id.noodleBtn);
+            final Button noodleBtn = (Button) findViewById(R.id.noodleBtn);
 
-        noodleBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Intent koreanNoodleIntent = new Intent(PickKoreanMenuActivity.this, KoreanNoodleActivity.class);
-                PickKoreanMenuActivity.this.startActivity(koreanNoodleIntent);
-            }
-        });
+            noodleBtn.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    Intent koreanNoodleIntent = new Intent(PickKoreanMenuActivity.this, KoreanNoodleActivity.class);
+                    PickKoreanMenuActivity.this.startActivity(koreanNoodleIntent);
+                }
+            });
 
 
-    }*/
+        }*/
     private static String IP_ADDRESS = "192.168.0.44";
     private static String TAG = "phptest";
 
@@ -59,7 +59,7 @@ public class PickKoreanMenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pick_korean_menu);
+        setContentView(R.layout.activity_pick_western_menu);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.listView_main_list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -72,8 +72,8 @@ public class PickKoreanMenuActivity extends AppCompatActivity {
         mArrayList.clear();
         mAdapter.notifyDataSetChanged();
 
-        PickKoreanMenuActivity.GetData task = new PickKoreanMenuActivity.GetData();
-        task.execute( "http://" + IP_ADDRESS + "/getKoreanCuisine.php", "");
+        PickWesternMenuActivity.GetData task = new PickWesternMenuActivity.GetData();
+        task.execute( "http://" + IP_ADDRESS + "/getWesternCuisine.php", "");
 
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), mRecyclerView, new ClickListener() {
             @Override
@@ -82,15 +82,13 @@ public class PickKoreanMenuActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), dict.getRestaurantName()+' '+dict.getAddress()+' '+dict.getTel(), Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(getBaseContext(), StoreInfoActivity.class);
+                String userName = intent.getStringExtra("userName");
 
-                Intent nameintent = getIntent();
-                String userName = nameintent.getStringExtra("userName");
                 intent.putExtra("userName", userName);
                 intent.putExtra("restaurantNum", dict.getRegisterNum());
                 intent.putExtra("restaurantName", dict.getRestaurantName());
                 intent.putExtra("restaurantAddress", dict.getAddress());
                 intent.putExtra("tel", dict.getTel());
-
 
                 startActivity(intent);
             }
@@ -111,9 +109,9 @@ public class PickKoreanMenuActivity extends AppCompatActivity {
     public static class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
 
         private GestureDetector gestureDetector;
-        private PickKoreanMenuActivity.ClickListener clickListener;
+        private PickWesternMenuActivity.ClickListener clickListener;
 
-        public RecyclerTouchListener(Context context, final RecyclerView recyclerView, final PickKoreanMenuActivity.ClickListener clickListener) {
+        public RecyclerTouchListener(Context context, final RecyclerView recyclerView, final PickWesternMenuActivity.ClickListener clickListener) {
             this.clickListener = clickListener;
             gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
                 @Override
@@ -158,7 +156,7 @@ public class PickKoreanMenuActivity extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
 
-            progressDialog = ProgressDialog.show(PickKoreanMenuActivity.this,
+            progressDialog = ProgressDialog.show(PickWesternMenuActivity.this,
                     "Please Wait", null, true, true);
         }
 
@@ -228,7 +226,7 @@ public class PickKoreanMenuActivity extends AppCompatActivity {
 
     private void showResult(){
 
-        String TAG_JSON="koreanFood";
+        String TAG_JSON="westernFood";
         String TAG_registerNum = "registerNum";
         String TAG_restaurantName = "restaurantName";
         String TAG_address = "address";

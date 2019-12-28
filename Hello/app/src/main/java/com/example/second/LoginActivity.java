@@ -20,13 +20,20 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
 import com.nhn.android.naverlogin.OAuthLogin;
 import com.nhn.android.naverlogin.OAuthLoginHandler;
 import com.nhn.android.naverlogin.ui.view.OAuthLoginButton;
 import com.nhn.android.oauth.*;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.nhn.android.naverlogin.OAuthLogin;
+
+import org.json.JSONObject;
 
 public class LoginActivity extends Activity {
     private static final String TAG = "LoginActivity";
@@ -58,8 +65,8 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        final EditText emailT = (EditText) findViewById(R.id.emailText);
-        final EditText passwd = (EditText) findViewById(R.id.passwordText);
+        final EditText emailText = (EditText) findViewById(R.id.emailText);
+        final EditText passwordText = (EditText) findViewById(R.id.passwordText);
         final Button loginBtn = (Button) findViewById(R.id.loginBtn);
         final TextView registerBtn = (TextView) findViewById(R.id.joinBtn);
 
@@ -79,7 +86,45 @@ public class LoginActivity extends Activity {
             }
         });
 
+        loginBtn.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View view) {
+                final String email = emailText.getText().toString();
+                final String password = passwordText.getText().toString();
+
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            boolean success = jsonObject.getBoolean("success");
+                            if(success) {
+                                String email = jsonObject.getString("email");
+                                String password = jsonObject.getString("password");
+                                String userName = jsonObject.getString("username");
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                intent.putExtra("email", email);
+                                intent.putExtra("password", password);
+                                intent.putExtra("username", userName);
+                                LoginActivity.this.startActivity(intent);
+                            } else {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                                builder.setMessage("로그인에 실패하셨습니다.")
+                                        .setNegativeButton("다시시도", null)
+                                        .create()
+                                        .show();
+                            }
+                        } catch(Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                LoginRequest loginRequest = new LoginRequest(email, password, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
+                queue.add(loginRequest);
+            }
+        });
 
 
 

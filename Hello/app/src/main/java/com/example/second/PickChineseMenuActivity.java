@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 public class PickChineseMenuActivity extends AppCompatActivity {
 
-    private static String IP_ADDRESS = "192.168.1.205";
+    private static String IP_ADDRESS = "192.168.0.44";
     private static String TAG = "phptest";
 
     private ArrayList<RestaurantData> mArrayList;
@@ -65,7 +65,10 @@ public class PickChineseMenuActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), dict.getRestaurantName()+' '+dict.getAddress()+' '+dict.getTel(), Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(getBaseContext(), StoreInfoActivity.class);
+                String userName = intent.getStringExtra("userName");
 
+                intent.putExtra("userName", userName);
+                intent.putExtra("restaurantNum", dict.getRegisterNum());
                 intent.putExtra("restaurantName", dict.getRestaurantName());
                 intent.putExtra("restaurantAddress", dict.getAddress());
                 intent.putExtra("tel", dict.getTel());
@@ -207,7 +210,7 @@ public class PickChineseMenuActivity extends AppCompatActivity {
     private void showResult(){
 
         String TAG_JSON="chineseFood";
-        /*String TAG_registerNum = "registerNum";*/
+        String TAG_registerNum = "registerNum";
         String TAG_restaurantName = "restaurantName";
         String TAG_address = "address";
         String TAG_tel ="tel";
@@ -220,14 +223,14 @@ public class PickChineseMenuActivity extends AppCompatActivity {
 
                 JSONObject item = jsonArray.getJSONObject(i);
 
-                /*String registerNum = item.getString(TAG_registerNum);*/
+                String registerNum = item.getString(TAG_registerNum);
                 String restaurantName = item.getString(TAG_restaurantName);
                 String address = item.getString(TAG_address);
                 String tel = item.getString(TAG_tel);
 
                 RestaurantData restaurantData = new RestaurantData();
 
-                /*restaurantData.setRegisterNum(registerNum);*/
+                restaurantData.setRegisterNum(registerNum);
                 restaurantData.setRestaurantName(restaurantName);
                 restaurantData.setTel(tel);
                 restaurantData.setAddress(address);
