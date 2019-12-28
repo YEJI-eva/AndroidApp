@@ -13,12 +13,13 @@ package="com.example.second">
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <meta-data android:name="com.samsung.android.icon_container.has_icon_container" android:value="true"/>
                 <activity
                     android:name=".SplashActivity"
                     android:theme = "@style/SplashTheme"
