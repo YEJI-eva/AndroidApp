@@ -30,9 +30,10 @@ public class MainActivity extends AppCompatActivity {
         pickCuisineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // 로그인하면서 던진 username을 받아서 다시 PickCusineActivity로 던져줍니다.
                 Intent intent = getIntent();
                 String userName = intent.getStringExtra("username");
-                Log.d("userName", userName);
+
                 Intent pickCuisineIntent = new Intent(MainActivity.this, PickCuisineActivity.class);
                 pickCuisineIntent.putExtra("userName", userName);
                 MainActivity.this.startActivity(pickCuisineIntent);

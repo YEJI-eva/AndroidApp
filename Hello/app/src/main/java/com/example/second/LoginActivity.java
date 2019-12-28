@@ -72,7 +72,6 @@ public class LoginActivity extends Activity {
 
         mContext = this;
 
-
         initData();
         initView();
 
@@ -107,6 +106,7 @@ public class LoginActivity extends Activity {
                                 intent.putExtra("email", email);
                                 intent.putExtra("password", password);
                                 intent.putExtra("username", userName);
+                                // 로그인하면 메인액티비티로 username을 던져줍니다.
                                 LoginActivity.this.startActivity(intent);
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
@@ -149,7 +149,6 @@ public class LoginActivity extends Activity {
 
         mOAuthLoginButton = (OAuthLoginButton) findViewById(R.id.buttonOAuthLoginImg);
         mOAuthLoginButton.setOAuthLoginHandler(mOAuthLoginHandler);
-
 
     }
 

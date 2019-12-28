@@ -29,25 +29,8 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class PickKoreanMenuActivity extends AppCompatActivity {
-/*
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pick_korean_menu);
 
-        final Button noodleBtn = (Button) findViewById(R.id.noodleBtn);
-
-        noodleBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Intent koreanNoodleIntent = new Intent(PickKoreanMenuActivity.this, KoreanNoodleActivity.class);
-                PickKoreanMenuActivity.this.startActivity(koreanNoodleIntent);
-            }
-        });
-
-
-    }*/
-    private static String IP_ADDRESS = "192.168.0.44";
+    private static String IP_ADDRESS = "172.30.1.40";
     private static String TAG = "phptest";
 
     private ArrayList<RestaurantData> mArrayList;
@@ -83,14 +66,16 @@ public class PickKoreanMenuActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(getBaseContext(), StoreInfoActivity.class);
 
+                // PickCuisine에서받은 userName은 가게정보 intent와 이름이 같기때문에 nameintent로 받은 다음
+                // intent에 다시 담아서 던져줍니다.
                 Intent nameintent = getIntent();
                 String userName = nameintent.getStringExtra("userName");
+
                 intent.putExtra("userName", userName);
                 intent.putExtra("restaurantNum", dict.getRegisterNum());
                 intent.putExtra("restaurantName", dict.getRestaurantName());
                 intent.putExtra("restaurantAddress", dict.getAddress());
                 intent.putExtra("tel", dict.getTel());
-
 
                 startActivity(intent);
             }

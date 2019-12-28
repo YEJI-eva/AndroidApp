@@ -23,6 +23,8 @@ public class PickCuisineActivity extends AppCompatActivity {
         koreanBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                // Main에서 던진 userName을 받아서 각각 메뉴 액티비티로 던져줍니다.
+                // 이런식으로 review까지 userName을 끌고갑니다.
                 Intent intent = getIntent();
                 String userName = intent.getStringExtra("userName");
                 Intent koreanIntent = new Intent(PickCuisineActivity.this, PickKoreanMenuActivity.class);
@@ -35,7 +37,7 @@ public class PickCuisineActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = getIntent();
-                String userName = intent.getStringExtra("username");
+                String userName = intent.getStringExtra("userName");
                 Intent chineseIntent = new Intent(PickCuisineActivity.this, PickChineseMenuActivity.class);
                 chineseIntent.putExtra("userName", userName);
                 PickCuisineActivity.this.startActivity(chineseIntent);
@@ -46,7 +48,7 @@ public class PickCuisineActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = getIntent();
-                String userName = intent.getStringExtra("username");
+                String userName = intent.getStringExtra("userName");
                 Intent japaneseIntent = new Intent(PickCuisineActivity.this, PickJapaneseMenuActivity.class);
                 japaneseIntent.putExtra("userName", userName);
                 PickCuisineActivity.this.startActivity(japaneseIntent);
@@ -57,7 +59,7 @@ public class PickCuisineActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = getIntent();
-                String userName = intent.getStringExtra("username");
+                String userName = intent.getStringExtra("userName");
                 Intent westernIntent = new Intent(PickCuisineActivity.this, PickWesternMenuActivity.class);
                 westernIntent.putExtra("userName", userName);
                 PickCuisineActivity.this.startActivity(westernIntent);

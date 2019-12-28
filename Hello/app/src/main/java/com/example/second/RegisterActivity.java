@@ -70,7 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 };
-               com.example.second.RegisterRequest registerRequest = new com.example.second.RegisterRequest(email, password, username, responseListener);
+                com.example.second.RegisterRequest registerRequest = new com.example.second.RegisterRequest(email, password, username, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
                 queue.add(registerRequest);
             }

@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 public class PickChineseMenuActivity extends AppCompatActivity {
 
-    private static String IP_ADDRESS = "192.168.0.44";
+    private static String IP_ADDRESS = "172.30.1.40";
     private static String TAG = "phptest";
 
     private ArrayList<RestaurantData> mArrayList;
@@ -65,7 +65,11 @@ public class PickChineseMenuActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), dict.getRestaurantName()+' '+dict.getAddress()+' '+dict.getTel(), Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(getBaseContext(), StoreInfoActivity.class);
-                String userName = intent.getStringExtra("userName");
+
+                // PickCuisine에서받은 userName은 가게정보 intent와 이름이 같기때문에 nameintent로 받은 다음
+                // intent에 다시 담아서 던져줍니다.
+                Intent nameintent = getIntent();
+                String userName = nameintent.getStringExtra("userName");
 
                 intent.putExtra("userName", userName);
                 intent.putExtra("restaurantNum", dict.getRegisterNum());
