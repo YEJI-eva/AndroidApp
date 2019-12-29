@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">915141849040-23es82i6rmmqme7osenb6qpssi9a4lgh.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://loginexample-e1214.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">915141849040</string>
+    <string name="google_api_key" translatable="false">AIzaSyCEowlPRRkkUeMBQKMA8JEdYjld0tI0xKc</string>
+    <string name="google_app_id" translatable="false">1:915141849040:android:965453b7f1880ec9dbd3d5</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCEowlPRRkkUeMBQKMA8JEdYjld0tI0xKc</string>
+    <string name="google_storage_bucket" translatable="false">loginexample-e1214.appspot.com</string>
+    <string name="project_id" translatable="false">loginexample-e1214</string>
+</resources>
