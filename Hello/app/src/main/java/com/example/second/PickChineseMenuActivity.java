@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 public class PickChineseMenuActivity extends AppCompatActivity {
 
-    private static String IP_ADDRESS = "172.30.1.40";
+    private static String IP_ADDRESS = "192.168.0.50";
     private static String TAG = "phptest";
 
     private ArrayList<RestaurantData> mArrayList;
@@ -58,6 +58,7 @@ public class PickChineseMenuActivity extends AppCompatActivity {
         PickChineseMenuActivity.GetData task = new PickChineseMenuActivity.GetData();
         task.execute( "http://" + IP_ADDRESS + "/getChineseCuisine.php", "");
 
+        // 가게목록 터치하면 해당 가게로 이동
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), mRecyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
@@ -87,12 +88,13 @@ public class PickChineseMenuActivity extends AppCompatActivity {
         }));
 
     }
+    // 가게목록 터치하면 해당 가게로 이동
     public interface ClickListener {
         void onClick(View view, int position);
 
         void onLongClick(View view, int position);
     }
-
+    // 가게목록 터치하면 해당 가게로 이동
     public static class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
 
         private GestureDetector gestureDetector;

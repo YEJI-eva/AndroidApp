@@ -29,25 +29,8 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class PickWesternMenuActivity extends AppCompatActivity {
-    /*
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_pick_korean_menu);
 
-            final Button noodleBtn = (Button) findViewById(R.id.noodleBtn);
-
-            noodleBtn.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View view) {
-                    Intent koreanNoodleIntent = new Intent(PickKoreanMenuActivity.this, KoreanNoodleActivity.class);
-                    PickKoreanMenuActivity.this.startActivity(koreanNoodleIntent);
-                }
-            });
-
-
-        }*/
-    private static String IP_ADDRESS = "172.30.1.40";
+    private static String IP_ADDRESS = "192.168.0.50";
     private static String TAG = "phptest";
 
     private ArrayList<RestaurantData> mArrayList;

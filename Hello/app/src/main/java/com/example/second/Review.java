@@ -22,6 +22,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,7 +39,7 @@ import java.util.ArrayList;
 
 public class Review extends Fragment {
 
-    private static String IP_ADDRESS = "172.30.1.40";
+    private static String IP_ADDRESS = "192.168.0.50";
     private static String TAG = "phptest";
 
     private ArrayList<ReviewData> mArrayList;
@@ -51,14 +54,10 @@ public class Review extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.review, container, false);
-        String userName;
-        String reviewContent;
-        String regDate;
-        String rate;
-
 
         Button writeReviewBtn = (Button) view.findViewById(R.id.writeReview);
 
+        // 가게번호, 회원이름 받아와서 리부 작성누르면 작성페이지로 값 넘겨주는 작업
         writeReviewBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -71,7 +70,6 @@ public class Review extends Fragment {
                     storeNum = bundle.getString("restaurantNum");
                     userName = bundle.getString("userName");
 
-                    Log.d("a", storeNum);
                     Intent reviewIntent = new Intent(getActivity(), ReviewWriteActivity.class);
                     reviewIntent.putExtra("userName", userName);
                     reviewIntent.putExtra("storeNum", storeNum);
@@ -80,8 +78,10 @@ public class Review extends Fragment {
 
             }
         });
+        Bundle bundle = getArguments();
+        String storeNum = (String) bundle.getString("restaurantNum");
 
-       /* mRecyclerView = (RecyclerView) view.findViewById(R.id.review_list);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.review_list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         mArrayList = new ArrayList<ReviewData>();
@@ -92,16 +92,17 @@ public class Review extends Fragment {
         mArrayList.clear();
         mAdapter.notifyDataSetChanged();
 
-        Review.GetData task = new Review.GetData();
-        task.execute( "http://" + IP_ADDRESS + "/getReviews.php", "");*/
 
+        Log.d("@@@StoreNum@@@", storeNum);
+        // 여기서 php로 보낼 값을 담아줍니다.
+        Review.GetData task = new Review.GetData();
+        task.execute( "http://" + IP_ADDRESS + "/getReviews.php", storeNum);
 
         return view;
     }
 
 
-
-    /*private class GetData extends AsyncTask<String, Void, String> {
+    private class GetData extends AsyncTask<String, Void, String> {
 
         ProgressDialog progressDialog;
         String errorString = null;
@@ -114,23 +115,15 @@ public class Review extends Fragment {
                     "Please Wait", null, true, true);
         }
 
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
 
-            progressDialog.dismiss();
-            *//*mTextViewResult.setText(result);*//*
-            Log.d(TAG, "response - " + result);
-
-            mJsonString = result;
-            showResult();
-
-        }
 
         @Override
         protected String doInBackground(String... params) {
+            // 위에서 php로 보내기위해 담은 값을 찾아 줍니다.
             String serverURL = params[0];
-            String postParameters = params[1];
+            String storeNum = (String) params[1];
+            String postParameters = "storeNum=" + storeNum;
+            Log.d("@@@param[1]@@@", postParameters);
 
             try {
                 URL url = new URL(serverURL);
@@ -142,6 +135,7 @@ public class Review extends Fragment {
                 httpURLConnection.setDoInput(true);
                 httpURLConnection.connect();
 
+                //파라미터에 담아서 PHP로 보내줍니다
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 outputStream.write(postParameters.getBytes("UTF-8"));
                 outputStream.flush();
@@ -175,6 +169,16 @@ public class Review extends Fragment {
 
                 return null;
             }
+        }
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            progressDialog.dismiss();
+            Log.d(TAG, "response - " + result);
+
+            mJsonString = result;
+            showResult();
         }
     }
 
@@ -212,5 +216,5 @@ public class Review extends Fragment {
         } catch (JSONException e) {
             Log.d(TAG, "showResult : ", e);
         }
-    }*/
+    }
 }

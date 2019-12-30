@@ -41,8 +41,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.CustomView
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.review_list, null);
         ReviewAdapter.CustomViewHolder viewHolder = new ReviewAdapter.CustomViewHolder(view);
 
-
-
         return viewHolder;
     }
 

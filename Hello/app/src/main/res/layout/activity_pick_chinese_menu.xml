@@ -8,11 +8,11 @@
     tools:context=".PickChineseMenuActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="6"
-        android:layout_margin="5dp"
-        android:padding="5dp"
-        android:id="@+id/listView_main_list" />
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="6"
+    android:layout_margin="5dp"
+    android:padding="5dp"
+    android:id="@+id/listView_main_list" />
 
 </LinearLayout>

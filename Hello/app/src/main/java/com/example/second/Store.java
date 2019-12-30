@@ -36,7 +36,7 @@ public class Store extends Fragment {
             Log.d("c", tel);
 
             TextView textView = (TextView) view.findViewById(R.id.textView_store);
-            String str = "이름: " + restaurantName + "\n" + " 주소: " + restaurantAddress + "\n" + " 전화번호: " + tel;
+            String str = "이름: " + restaurantName + "\n" + "주소: " + restaurantAddress + "\n" + "전화번호: " + tel;
             Log.d("str : ", str);
 
             textView.setText(str);
