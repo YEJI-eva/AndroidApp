@@ -70,11 +70,6 @@ public class StoreInfoActivity extends AppCompatActivity {
         String restaurantAddress = intent.getStringExtra("restaurantAddress");
         String tel = intent.getStringExtra("tel");
 
-        Log.d("StoreInfoAca", restaurantName);
-        Log.d("StoreInfoAcb", restaurantAddress);
-        Log.d("StoreInfoAcc", tel);
-
-
         Bundle bundle = new Bundle();
         bundle.putString("userName", userName);
         bundle.putString("restaurantNum", restaurantNum);

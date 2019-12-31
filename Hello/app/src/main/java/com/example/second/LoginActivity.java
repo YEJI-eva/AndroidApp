@@ -6,8 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 //네이버
 import android.app.Activity;
@@ -60,15 +62,26 @@ public class LoginActivity extends Activity {
 
     private OAuthLoginButton mOAuthLoginButton;
     //여기까지 네이버
+
+    // 빈곳 눌렀을때 키보드창 내리기
+    InputMethodManager imm;
+    EditText passwordText;
+    EditText emailText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
-        final EditText emailText = (EditText) findViewById(R.id.emailText);
-        final EditText passwordText = (EditText) findViewById(R.id.passwordText);
+        emailText = (EditText) findViewById(R.id.emailText);
+        passwordText = (EditText) findViewById(R.id.passwordText);
         final Button loginBtn = (Button) findViewById(R.id.loginBtn);
+        final RelativeLayout background = (RelativeLayout) findViewById(R.id.background);
         final TextView registerBtn = (TextView) findViewById(R.id.joinBtn);
+
+        background.setOnClickListener(myClickListener);
+        loginBtn.setOnClickListener(myClickListener);
 
         mContext = this;
 
@@ -102,7 +115,7 @@ public class LoginActivity extends Activity {
                                 String email = jsonObject.getString("email");
                                 String password = jsonObject.getString("password");
                                 String userName = jsonObject.getString("username");
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, MemberMainActivity.class);
                                 intent.putExtra("email", email);
                                 intent.putExtra("password", password);
                                 intent.putExtra("username", userName);
@@ -125,11 +138,28 @@ public class LoginActivity extends Activity {
                 queue.add(loginRequest);
             }
         });
-
-
-
     }
 
+    // 빈화면이나 로그인 버튼을 눌렀을때도 키보드 내려가도록함
+    View.OnClickListener myClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v)
+        {
+            hideKeyboard();
+            switch (v.getId())
+            {
+                case R.id.background :
+                    break;
+                case R.id.loginBtn :
+                    break;
+            }
+        }
+    };
+
+    private void hideKeyboard() {
+        imm.hideSoftInputFromWindow(emailText.getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(passwordText.getWindowToken(), 0);
+    }
 
     private void initData() {
         mOAuthLoginInstance = OAuthLogin.getInstance();
@@ -149,16 +179,12 @@ public class LoginActivity extends Activity {
 
         mOAuthLoginButton = (OAuthLoginButton) findViewById(R.id.buttonOAuthLoginImg);
         mOAuthLoginButton.setOAuthLoginHandler(mOAuthLoginHandler);
-
     }
-
-
 
     @Override
     protected void onResume() {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         super.onResume();
-
     }
 
     /**
@@ -197,7 +223,6 @@ public class LoginActivity extends Activity {
                 mOAuthLoginInstance.logout(mContext);
                 break;
             }
-
             default:
                 break;
         }
@@ -213,10 +238,8 @@ public class LoginActivity extends Activity {
                 Log.d(TAG, "errorCode:" + mOAuthLoginInstance.getLastErrorCode(mContext));
                 Log.d(TAG, "errorDesc:" + mOAuthLoginInstance.getLastErrorDesc(mContext));
             }
-
             return null;
         }
-
     }
 
     private class RequestApiTask extends AsyncTask<Void, Void, String> {
@@ -231,7 +254,6 @@ public class LoginActivity extends Activity {
             String at = mOAuthLoginInstance.getAccessToken(mContext);
             return mOAuthLoginInstance.requestApi(mContext, at, url);
         }
-
         protected void onPostExecute(String content) {
             mApiResultText.setText((String) content);
         }
@@ -242,10 +264,5 @@ public class LoginActivity extends Activity {
         protected String doInBackground(Void... params) {
             return mOAuthLoginInstance.refreshAccessToken(mContext);
         }
-
-
     }
-
-
-
 }
