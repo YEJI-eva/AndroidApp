@@ -17,9 +17,7 @@ public class MemberMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_main);
 
-
         final Button pickCuisineButton = (Button) findViewById(R.id.pickCuisineBtn);
-
 
         pickCuisineButton.setOnClickListener(new View.OnClickListener() {
             @Override

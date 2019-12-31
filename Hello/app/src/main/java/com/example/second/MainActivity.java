@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final Button loginButton = (Button) findViewById(R.id.loginBtn);
-        final Button pickCuisineButton = (Button) findViewById(R.id.pickCuisineBtn);
 
         loginButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -32,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         backPressCloseHandler.onBackPressed();
     }
 }

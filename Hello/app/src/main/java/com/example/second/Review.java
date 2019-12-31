@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,7 +41,7 @@ import java.util.List;
 
 public class Review extends Fragment {
 
-    private static String IP_ADDRESS = "192.168.0.50";
+    private static String IP_ADDRESS = "192.168.43.231";
     private static String TAG = "phptest";
 
     private ArrayList<ReviewData> mArrayList;
@@ -50,6 +51,8 @@ public class Review extends Fragment {
     private String mJsonString;
 
     private View view;
+
+    RatingBar rating;
 
     @Nullable
     @Override
@@ -83,7 +86,10 @@ public class Review extends Fragment {
         String storeNum = (String) bundle.getString("restaurantNum");
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.review_list);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.setHasFixedSize(true);
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        llm.setAutoMeasureEnabled(false);
+        mRecyclerView.setLayoutManager(llm);
 
         mArrayList = new ArrayList<ReviewData>();
 
