@@ -87,7 +87,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Cu
 
         public CustomViewHolder(View view) {
             super(view);
-            this.registerNum = (TextView) view.findViewById(R.id.textView_list_registerNum);
+//            this.registerNum = (TextView) view.findViewById(R.id.textView_list_registerNum);
             this.restaurantName = (TextView) view.findViewById(R.id.textView_list_restaurantName);
             this.address = (TextView) view.findViewById(R.id.textView_list_address);
             this.tel = (TextView) view.findViewById(R.id.textView_list_tel);
@@ -107,7 +107,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Cu
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder viewHolder, int position) {
 
-        viewHolder.registerNum.setText(mList.get(position).getRegisterNum());
+        //viewHolder.registerNum.setText(mList.get(position).getRegisterNum());
         viewHolder.restaurantName.setText(mList.get(position).getRestaurantName());
         viewHolder.address.setText(mList.get(position).getAddress());
         viewHolder.tel.setText(mList.get(position).getTel());

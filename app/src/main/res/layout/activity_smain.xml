@@ -30,11 +30,11 @@
         tools:srcCompat="@tools:sample/avatars[0]" />
 
     <Button
-        android:id="@+id/loginBtn"
+        android:id="@+id/logoutBtn"
         android:layout_width="170dp"
         android:layout_height="60dp"
         android:layout_marginTop="348dp"
-        android:text="로그인"
+        android:text="로그아웃"
 
         android:background="@color/fbutton_color_carrot"
         app:layout_constraintEnd_toEndOf="parent"

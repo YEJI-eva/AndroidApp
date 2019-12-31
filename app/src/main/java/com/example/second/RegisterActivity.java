@@ -60,7 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 //Toast.makeText(getApplicationContext(),"회원등록에 실패했습니다.", Toast.LENGTH_SHORT).show();
                                 //return;
                                 AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                                builder.setMessage("회원등록에 실패했습니다.")
+                                builder.setMessage("회원등록에 실해했습니다.")
                                         .setNegativeButton("확인", null)
                                         .create()
                                         .show();
@@ -70,7 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 };
-               com.example.second.RegisterRequest registerRequest = new com.example.second.RegisterRequest(email, password, username, responseListener);
+                RegisterRequest registerRequest = new RegisterRequest(email, password, username, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
                 queue.add(registerRequest);
             }

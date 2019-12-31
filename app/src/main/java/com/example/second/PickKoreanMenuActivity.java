@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 public class PickKoreanMenuActivity extends AppCompatActivity {
 
-    private static String IP_ADDRESS = "192.168.1.14";
+    private static String IP_ADDRESS = "192.168.43.204";
     private static String TAG = "phptest";
 
     private ArrayList<RestaurantData> mArrayList;

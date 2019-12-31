@@ -16,10 +16,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_smain);
+        setContentView(R.layout.activity_main);
 
         final Button loginButton = (Button) findViewById(R.id.loginBtn);
-        final Button pickCuisineButton = (Button) findViewById(R.id.pickCuisineBtn);
 
         loginButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -30,13 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        pickCuisineButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent pickCuisineIntent = new Intent(MainActivity.this, PickCuisineActivity.class);
-                MainActivity.this.startActivity(pickCuisineIntent);
-            }
-        });
+
 
     }
 }

@@ -6,8 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 //네이버
 import android.app.Activity;
@@ -20,13 +22,20 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
 import com.nhn.android.naverlogin.OAuthLogin;
 import com.nhn.android.naverlogin.OAuthLoginHandler;
 import com.nhn.android.naverlogin.ui.view.OAuthLoginButton;
 import com.nhn.android.oauth.*;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.nhn.android.naverlogin.OAuthLogin;
+
+import org.json.JSONObject;
 
 public class LoginActivity extends Activity {
     private static final String TAG = "LoginActivity";
@@ -53,18 +62,28 @@ public class LoginActivity extends Activity {
 
     private OAuthLoginButton mOAuthLoginButton;
     //여기까지 네이버
+
+    // 빈곳 눌렀을때 키보드창 내리기
+    InputMethodManager imm;
+    EditText passwordText;
+    EditText emailText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
-        final EditText emailT = (EditText) findViewById(R.id.emailText);
-        final EditText passwd = (EditText) findViewById(R.id.passwordText);
+        emailText = (EditText) findViewById(R.id.emailText);
+        passwordText = (EditText) findViewById(R.id.passwordText);
         final Button loginBtn = (Button) findViewById(R.id.loginBtn);
+        final RelativeLayout background = (RelativeLayout) findViewById(R.id.background);
         final TextView registerBtn = (TextView) findViewById(R.id.joinBtn);
 
-        mContext = this;
+        background.setOnClickListener(myClickListener);
+        loginBtn.setOnClickListener(myClickListener);
 
+        mContext = this;
 
         initData();
         initView();
@@ -79,12 +98,68 @@ public class LoginActivity extends Activity {
             }
         });
 
+        loginBtn.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View view) {
+                final String email = emailText.getText().toString();
+                final String password = passwordText.getText().toString();
 
-
-
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            boolean success = jsonObject.getBoolean("success");
+                            if(success) {
+                                String email = jsonObject.getString("email");
+                                String password = jsonObject.getString("password");
+                                String userName = jsonObject.getString("username");
+                                Intent intent = new Intent(LoginActivity.this, LoginMainActivity.class);
+                                intent.putExtra("email", email);
+                                intent.putExtra("password", password);
+                                intent.putExtra("username", userName);
+                                // 로그인하면 메인액티비티로 username을 던져줍니다.
+                                LoginActivity.this.startActivity(intent);
+                            } else {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                                builder.setMessage("로그인에 실패하셨습니다.")
+                                        .setNegativeButton("다시시도", null)
+                                        .create()
+                                        .show();
+                            }
+                        } catch(Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                LoginRequest loginRequest = new LoginRequest(email, password, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
+                queue.add(loginRequest);
+            }
+        });
     }
 
+    // 빈화면이나 로그인 버튼을 눌렀을때도 키보드 내려가도록함
+    View.OnClickListener myClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v)
+        {
+            hideKeyboard();
+            switch (v.getId())
+            {
+                case R.id.background :
+                    break;
+                case R.id.loginBtn :
+                    break;
+            }
+        }
+    };
+
+    private void hideKeyboard() {
+        imm.hideSoftInputFromWindow(emailText.getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(passwordText.getWindowToken(), 0);
+    }
 
     private void initData() {
         mOAuthLoginInstance = OAuthLogin.getInstance();
@@ -104,17 +179,12 @@ public class LoginActivity extends Activity {
 
         mOAuthLoginButton = (OAuthLoginButton) findViewById(R.id.buttonOAuthLoginImg);
         mOAuthLoginButton.setOAuthLoginHandler(mOAuthLoginHandler);
-
-
     }
-
-
 
     @Override
     protected void onResume() {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         super.onResume();
-
     }
 
     /**
@@ -153,7 +223,6 @@ public class LoginActivity extends Activity {
                 mOAuthLoginInstance.logout(mContext);
                 break;
             }
-
             default:
                 break;
         }
@@ -169,10 +238,8 @@ public class LoginActivity extends Activity {
                 Log.d(TAG, "errorCode:" + mOAuthLoginInstance.getLastErrorCode(mContext));
                 Log.d(TAG, "errorDesc:" + mOAuthLoginInstance.getLastErrorDesc(mContext));
             }
-
             return null;
         }
-
     }
 
     private class RequestApiTask extends AsyncTask<Void, Void, String> {
@@ -187,7 +254,6 @@ public class LoginActivity extends Activity {
             String at = mOAuthLoginInstance.getAccessToken(mContext);
             return mOAuthLoginInstance.requestApi(mContext, at, url);
         }
-
         protected void onPostExecute(String content) {
             mApiResultText.setText((String) content);
         }
@@ -198,10 +264,5 @@ public class LoginActivity extends Activity {
         protected String doInBackground(Void... params) {
             return mOAuthLoginInstance.refreshAccessToken(mContext);
         }
-
-
     }
-
-
-
 }

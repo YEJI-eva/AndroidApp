@@ -20,6 +20,8 @@
         android:label="Third"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+
         <activity android:name=".ReviewWriteActivity"></activity>
 
         <activity
@@ -33,6 +35,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
+        <activity android:name=".LoginMainActivity" />
+
         <activity android:name=".PickChineseMenuActivity" />
         <activity android:name=".PickWesternMenuActivity" />
         <activity android:name=".PickJapaneseMenuActivity" />
@@ -45,7 +49,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyA_aFmER9gQDKuahGyqYxDtOwIZe6aXfNQ" />
+            android:value="AIzaSyAHu3SpQCuHCHWsWXeK1RvvuLVm5EiNvSY" />
     </application>
 
 </manifest>
