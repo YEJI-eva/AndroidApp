@@ -64,22 +64,22 @@ public class StoreInfoActivity extends AppCompatActivity {
 
     private void setFrag(int n) {
         Intent intent = getIntent();
+        String userName = intent.getStringExtra("userName");
+        String restaurantNum = intent.getStringExtra("restaurantNum");
         String restaurantName = intent.getStringExtra("restaurantName");
         String restaurantAddress = intent.getStringExtra("restaurantAddress");
         String tel = intent.getStringExtra("tel");
 
-        Log.d("StoreInfoAca", restaurantName);
-        Log.d("StoreInfoAcb", restaurantAddress);
-        Log.d("StoreInfoAcc", tel);
-
-
         Bundle bundle = new Bundle();
+        bundle.putString("userName", userName);
+        bundle.putString("restaurantNum", restaurantNum);
         bundle.putString("restaurantName", restaurantName);
         bundle.putString("restaurantAddress", restaurantAddress);
         bundle.putString("tel", tel);
 
         store.setArguments(bundle);
         locationMap.setArguments(bundle);
+        review.setArguments(bundle);
 
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();

@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 public class PickJapaneseMenuActivity extends AppCompatActivity {
 
-    private static String IP_ADDRESS = "172.30.1.11";
+    private static String IP_ADDRESS = "192.168.1.14";
     private static String TAG = "phptest";
 
     private ArrayList<RestaurantData> mArrayList;
@@ -68,7 +68,7 @@ public class PickJapaneseMenuActivity extends AppCompatActivity {
                 String userName = intent.getStringExtra("userName");
 
                 intent.putExtra("userName", userName);
-//                intent.putExtra("restaurantNum", dict.getRegisterNum());
+                intent.putExtra("restaurantNum", dict.getRegisterNum());
                 intent.putExtra("restaurantName", dict.getRestaurantName());
                 intent.putExtra("restaurantAddress", dict.getAddress());
                 intent.putExtra("tel", dict.getTel());

@@ -9,10 +9,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.second.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -25,7 +29,6 @@ import java.util.List;
 
 public class LocationMap extends Fragment implements OnMapReadyCallback {
 
-
     private MapView mapView = null;
 
     public LocationMap()
@@ -33,11 +36,9 @@ public class LocationMap extends Fragment implements OnMapReadyCallback {
         // required
     }
 
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Nullable
@@ -50,7 +51,6 @@ public class LocationMap extends Fragment implements OnMapReadyCallback {
 
         return layout;
     }
-
 
     @Override
     public void onStart() {
@@ -98,7 +98,6 @@ public class LocationMap extends Fragment implements OnMapReadyCallback {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-
         //액티비티가 처음 생성될 때 실행되는 함수
 
         if(mapView != null)
@@ -138,11 +137,8 @@ public class LocationMap extends Fragment implements OnMapReadyCallback {
         String restaurantAddress;
         String restaurantName;
 
-
         restaurantName = bundle.getString("restaurantName");
         restaurantAddress = bundle.getString("restaurantAddress");
-
-
 
         double lon = findGeoPoint(getContext(), restaurantAddress).getLongitude();
         double lat = findGeoPoint(getContext(), restaurantAddress).getLatitude();
@@ -163,7 +159,5 @@ public class LocationMap extends Fragment implements OnMapReadyCallback {
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(store));
 
         googleMap.animateCamera(CameraUpdateFactory.zoomTo(17));
-
-
     }
 }

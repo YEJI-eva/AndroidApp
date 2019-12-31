@@ -1,10 +1,12 @@
 package com.example.second;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,11 +36,21 @@ public class Store extends Fragment {
             Log.d("c", tel);
 
             TextView textView = (TextView) view.findViewById(R.id.textView_store);
-            String str = "이름: " + restaurantName + "\n" + " 주소: " + restaurantAddress + "\n" + " 전화번호: " + tel;
+            String str = "이름: " + restaurantName + "\n" + "주소: " + restaurantAddress + "\n" + "전화번호: " + tel;
             Log.d("str : ", str);
 
             textView.setText(str);
         }
+
+        Button cameraBtn = (Button) view.findViewById(R.id.btn_goto_camera);
+
+//        cameraBtn.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view) {
+//                Intent cameraIntent = new Intent(getActivity(), CameraActivity.class);
+//                getActivity().startActivity(cameraIntent);
+//            }
+//        });
 
         return view;
     }

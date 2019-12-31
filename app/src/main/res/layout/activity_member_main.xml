@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MemberMainActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -29,14 +29,15 @@
         tools:srcCompat="@tools:sample/avatars[0]" />
 
     <Button
-        android:id="@+id/loginBtn"
+        android:id="@+id/pickCuisineBtn"
         android:layout_width="170dp"
         android:layout_height="60dp"
-        android:layout_marginTop="348dp"
-        android:text="로그인"
+        android:layout_marginTop="444dp"
+        android:text="메뉴정하기"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
