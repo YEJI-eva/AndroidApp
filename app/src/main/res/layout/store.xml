@@ -14,7 +14,7 @@
         android:id="@+id/btn_goto_camera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_marginTop="450dp"
         android:text="카메라" />
 
 </LinearLayout>
