@@ -1,9 +1,9 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- 생성 시간: 19-12-30 03:13
+-- 생성 시간: 20-01-02 13:42
 -- 서버 버전: 5.7.24
 -- PHP 버전: 7.2.14
 
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `restaurant` (
   `address` varchar(200) NOT NULL,
   `cuisine` varchar(20) CHARACTER SET utf8 COLLATE utf8_estonian_ci NOT NULL,
   PRIMARY KEY (`registerNum`)
-) ENGINE=MyISAM AUTO_INCREMENT=103 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8;
 
 --
 -- 테이블의 덤프 데이터 `restaurant`
@@ -158,32 +158,24 @@ DROP TABLE IF EXISTS `reviews`;
 CREATE TABLE IF NOT EXISTS `reviews` (
   `num` int(11) NOT NULL AUTO_INCREMENT,
   `storeNum` int(11) NOT NULL,
+  `email` varchar(30) NOT NULL,
   `userName` varchar(30) NOT NULL,
   `reviewContent` varchar(500) NOT NULL,
   `regDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `rate` double NOT NULL,
   PRIMARY KEY (`num`),
-  KEY `FK_userName` (`userName`),
-  KEY `FK_restaurant` (`storeNum`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+  KEY `FK_storeNum` (`storeNum`),
+  KEY `FK_email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
 
 --
 -- 테이블의 덤프 데이터 `reviews`
 --
 
-INSERT INTO `reviews` (`num`, `storeNum`, `userName`, `reviewContent`, `regDate`, `rate`) VALUES
-(1, 2, 'aaa', '여기 맛집입니다', '2019-12-11 15:00:00', 3.5),
-(2, 4, 'test', 'aaaaaa', '2019-12-28 13:31:06', 3.5),
-(3, 5, 'test', 'aaaa', '2019-12-28 13:52:50', 4),
-(4, 5, 'test', 'aa', '2019-12-28 16:46:21', 4),
-(5, 15, 'test', '리뷰테스트', '2019-12-28 16:51:38', 2.5),
-(6, 3, 'test', 'aaaa', '2019-12-29 13:35:24', 3),
-(7, 3, 'test', '', '2019-12-29 13:52:03', 4),
-(8, 3, 'test', '', '2019-12-29 13:53:26', 3),
-(9, 5, 'test', 'aaaa', '2019-12-29 14:20:20', 3),
-(10, 7, 'test', 'aaaaagggg', '2019-12-29 14:22:28', 5),
-(11, 1, 'test', 'ffffff', '2019-12-30 02:01:40', 3.5),
-(12, 3, 'test', 'ddddd', '2019-12-30 02:40:20', 2.5);
+INSERT INTO `reviews` (`num`, `storeNum`, `email`, `userName`, `reviewContent`, `regDate`, `rate`) VALUES
+(39, 1, 'aaa', 'test', '맛있어요', '2020-01-02 13:25:35', 3.5),
+(40, 1, 'aaa', 'test', '굿맛', '2020-01-02 13:26:10', 3.5),
+(41, 3, 'aaa', 'test', 'aaa', '2020-01-02 13:35:07', 3);
 
 -- --------------------------------------------------------
 
@@ -195,22 +187,35 @@ DROP TABLE IF EXISTS `testmember`;
 CREATE TABLE IF NOT EXISTS `testmember` (
   `email` varchar(50) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `username` varchar(30) NOT NULL,
+  `userName` varchar(30) NOT NULL,
   PRIMARY KEY (`email`),
-  UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  UNIQUE KEY `username` (`userName`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- 테이블의 덤프 데이터 `testmember`
 --
 
-INSERT INTO `testmember` (`email`, `password`, `username`) VALUES
-('aaa', '1234', 'test'),
-('vvv', '123', 'vvv'),
-('suerush7', '1234', 'dongho'),
+INSERT INTO `testmember` (`email`, `password`, `userName`) VALUES
 ('aa@ss.com', '1234', 'hi'),
+('aaa', '1234', 'test'),
 ('bbb@bb.com', '123', 'bbb'),
-('hhh@xx.com', '123', 'hhhg');
+('dddd@222.com', 'aaaa', 'dksiajd'),
+('dkswodud12345@gmail.com', 'anjae156', '안대영'),
+('hhh@xx.com', '123', 'hhhg'),
+('suerush7', '1234', 'dongho'),
+('vvv', '123', 'vvv');
+
+--
+-- 덤프된 테이블의 제약사항
+--
+
+--
+-- 테이블의 제약사항 `reviews`
+--
+ALTER TABLE `reviews`
+  ADD CONSTRAINT `FK_email` FOREIGN KEY (`email`) REFERENCES `testmember` (`email`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_storeNum` FOREIGN KEY (`storeNum`) REFERENCES `restaurant` (`registerNum`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
