@@ -6,9 +6,11 @@
 	$userName = $_POST["userName"];
 	$reviewContent = $_POST["review"];
 	$rate = $_POST["rate"];
+	
+	
 
-	$statement = mysqli_prepare($con, "INSERT INTO reviews (storeNum, userName, reviewContent, rate) VALUES (?, ?, ?, ?)");
-	mysqli_stmt_bind_param($statement, "ssss", $storeNum, $userName, $reviewContent, $rate);
+	$statement = mysqli_prepare($con, "INSERT INTO reviews (storeNum, email, userName, reviewContent, rate) VALUES (?, (SELECT email FROM testmember WHERE userName = ?), ?, ?, ?)");
+	mysqli_stmt_bind_param($statement, "sssss", $storeNum, $userName, $userName, $reviewContent, $rate);
 	mysqli_stmt_execute($statement);
 
 	$response = array();
