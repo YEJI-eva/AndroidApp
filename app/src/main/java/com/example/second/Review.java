@@ -39,7 +39,7 @@ import java.util.ArrayList;
 
 public class Review extends Fragment {
 
-    private static String IP_ADDRESS = "192.168.43.204";
+    private static String IP_ADDRESS = "172.30.1.5";
     private static String TAG = "phptest";
 
     private ArrayList<ReviewData> mArrayList;
