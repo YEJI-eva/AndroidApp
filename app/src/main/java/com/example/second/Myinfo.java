@@ -1,103 +1,79 @@
 package com.example.second;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
 
 public class Myinfo extends Fragment {
 
-    private View view;
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.store, container, false);
-        String restaurantName;
-        String restaurantAddress;
-        String tel;
-
-        Bundle bundle = getArguments();
-
-        if (bundle != null) {
-            restaurantName = bundle.getString("restaurantName");
-            restaurantAddress = bundle.getString("restaurantAddress");
-            tel = bundle.getString("tel");
-            Log.d("a", restaurantName);
-            Log.d("b", restaurantAddress);
-            Log.d("c", tel);
-
-            TextView textView = (TextView) view.findViewById(R.id.textView_store);
-            String str = "이름: " + restaurantName + "\n" + "주소: " + restaurantAddress + "\n" + "전화번호: " + tel;
-            Log.d("str : ", str);
-
-            textView.setText(str);
-        }
-
-        Button cameraBtn = (Button) view.findViewById(R.id.btn_goto_camera);
-
-//        cameraBtn.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view) {
-//                Intent cameraIntent = new Intent(getActivity(), CameraActivity.class);
-//                getActivity().startActivity(cameraIntent);
-//            }
-//        });
-
-        return view;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
-
-    /* private static String IP_ADDRESS = "192.168.0.50";
+    private static String IP_ADDRESS = "172.30.1.5";
     private static String TAG = "phptest";
 
-    private EditText mEditTextRestaurantNum;
-    private EditText mEditTextRestaurantName;
-    private EditText mEditTextAddress;
-    private TextView mTextViewResult;
-    private ArrayList<RestaurantData> mArrayList;
-    private RestaurantAdapter mAdapter;
+    private ArrayList<MyinfoData> mArrayList;
+    private MyinfoAdapter mAdapter;
     private RecyclerView mRecyclerView;
     private EditText mEditTextSearchKeyword;
     private String mJsonString;
+
     private View view;
-
-
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.store, container, false);
+        view = inflater.inflate(R.layout.review, container, false);
 
 
-        mRecyclerView = (RecyclerView) getActivity().findViewById(R.id.listView_main_lista);
+
+        Bundle bundle = getArguments();
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.myinfo_list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        mArrayList = new ArrayList<RestaurantData>();
+        mArrayList = new ArrayList<MyinfoData>();
 
-        mAdapter = new RestaurantAdapter((KoreanNoodleActivity) getActivity(), mArrayList);
+        mAdapter = new MyinfoAdapter(getActivity(), mArrayList);
         mRecyclerView.setAdapter(mAdapter);
 
         mArrayList.clear();
         mAdapter.notifyDataSetChanged();
 
-        GetData task = new GetData();
-        task.execute( "http://" + IP_ADDRESS + "/getKoreanNoodle.php", "");
+        // 여기서 php로 보낼 값을 담아줍니다.
+        Myinfo.GetData task = new Myinfo.GetData();
+        task.execute( "http://" + IP_ADDRESS + "/getMyinfo.php", "");
 
-        return mRecyclerView;
+        return view;
     }
 
 
@@ -114,31 +90,17 @@ public class Myinfo extends Fragment {
                     "Please Wait", null, true, true);
         }
 
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
 
-            progressDialog.dismiss();
-            mTextViewResult.setText(result);
-            Log.d(TAG, "response - " + result);
-
-            if (result == null){
-                mTextViewResult.setText(errorString);
-            }
-            else {
-                mJsonString = result;
-                showResult();
-            }
-        }
 
         @Override
         protected String doInBackground(String... params) {
-
+            // 위에서 php로 보내기위해 담은 값을 찾아 줍니다.
             String serverURL = params[0];
-            String postParameters = params[1];
+            String storeNum = (String) params[1];
+            String postParameters = "storeNum=" + storeNum;
+            Log.d("@@@param[1]@@@", postParameters);
 
             try {
-
                 URL url = new URL(serverURL);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
@@ -148,6 +110,7 @@ public class Myinfo extends Fragment {
                 httpURLConnection.setDoInput(true);
                 httpURLConnection.connect();
 
+                //파라미터에 담아서 PHP로 보내줍니다
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 outputStream.write(postParameters.getBytes("UTF-8"));
                 outputStream.flush();
@@ -163,7 +126,6 @@ public class Myinfo extends Fragment {
                 else{
                     inputStream = httpURLConnection.getErrorStream();
                 }
-
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
@@ -173,28 +135,35 @@ public class Myinfo extends Fragment {
                 while((line = bufferedReader.readLine()) != null){
                     sb.append(line);
                 }
-
                 bufferedReader.close();
 
                 return sb.toString().trim();
-
             } catch (Exception e) {
-
                 Log.d(TAG, "GetData : Error ", e);
                 errorString = e.toString();
 
                 return null;
             }
         }
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            progressDialog.dismiss();
+            Log.d(TAG, "response - " + result);
+
+            mJsonString = result;
+            showResult();
+        }
     }
 
     private void showResult(){
 
-        String TAG_JSON="koreanFood";
-        String TAG_REGISTERNUM = "REGISTERNUM";
-        String TAG_RESTARANTNAME = "RESTARANTNAME";
-        String TAG_ADDRESS = "ADDRESS";
-        String TAG_TEL ="TEL";
+        String TAG_JSON="reviews";
+        String TAG_userName = "userName";
+        String TAG_reviewContent = "reviewContent";
+        String TAG_regDate = "regDate";
+        String TAG_rate ="rate";
 
         try {
             JSONObject jsonObject = new JSONObject(mJsonString);
@@ -204,25 +173,23 @@ public class Myinfo extends Fragment {
 
                 JSONObject item = jsonArray.getJSONObject(i);
 
-                String registerNum = item.getString(TAG_REGISTERNUM);
-                String restaurantName = item.getString(TAG_RESTARANTNAME);
-                String address = item.getString(TAG_ADDRESS);
-                String tel = item.getString(TAG_TEL);
+                String userName = item.getString(TAG_userName);
+                String reviewContent = item.getString(TAG_reviewContent);
+                String regDate = item.getString(TAG_regDate);
+                String rate = item.getString(TAG_rate);
 
-                RestaurantData restaurantData = new RestaurantData();
+                MyinfoData MyinfoData = new MyinfoData();
 
-                restaurantData.setRegisterNum(registerNum);
-                restaurantData.setRestaurantName(restaurantName);
-                restaurantData.setAddress(address);
-                restaurantData.setTel(tel);
+                MyinfoData.setUserName(userName);
+                MyinfoData.setReviewContent(reviewContent);
+                MyinfoData.setRegDate(regDate);
+                MyinfoData.setRate(rate);
 
-                mArrayList.add(restaurantData);
+                mArrayList.add(MyinfoData);
                 mAdapter.notifyDataSetChanged();
             }
         } catch (JSONException e) {
             Log.d(TAG, "showResult : ", e);
         }
-    }*/
-
-
+    }
 }

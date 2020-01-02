@@ -44,6 +44,7 @@
         <activity android:name=".PickCuisineActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
+<!--        <activity android:name=".Myinfo" />-->
         <activity android:name=".StoreInfoActivity" />
 <!--        <activity android:name=".CameraActivity" />-->
 

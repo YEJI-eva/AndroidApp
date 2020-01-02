@@ -14,8 +14,8 @@ import java.util.ArrayList;
 
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.CustomViewHolder> {
 
-    private ArrayList<RestaurantData> mList = null;
-    private Activity context = null;
+        private ArrayList<RestaurantData> mList = null;
+        private Activity context = null;
 
     /*public RestaurantAdapter(KoreanNoodleActivity koreanNoodleActivity, ArrayList<RestaurantData> mArrayList) {
 
