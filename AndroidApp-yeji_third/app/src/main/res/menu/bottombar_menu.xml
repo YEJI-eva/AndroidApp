@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottomBarMap"
+        android:enabled="true"
+        android:icon="@drawable/map_icon"
+        android:title="위치"
+        android:iconTint="#FF9800"  />
+    <item
+        android:id="@+id/bottomBarStore"
+        android:enabled="true"
+        android:icon="@drawable/store_icon"
+        android:title="가게정보"
+        android:iconTint="#7B1FA2"/>
+    <item
+        android:id="@+id/bottomBarReview"
+        android:enabled="true"
+        android:icon="@drawable/review_icon"
+        android:title="리뷰"
+        android:iconTint="#5D4037"/>
+
+<!--    <item-->
+<!--        android:id="@+id/bottomBarMyinfo"-->
+<!--        android:enabled="true"-->
+<!--        android:icon="@drawable/ic_friends"-->
+<!--        android:title="내정보"-->
+<!--        android:iconTint="#009688"/>-->
+</menu>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingTop="5dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="5dp"
+    tools:context=".ReviewWriteActivity">
+
+    <LinearLayout
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView3"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-black"
+            android:gravity="center"
+            android:text="별점을 입력해주세요" />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:numStars="5"
+            android:rating="0" />
+
+        <Button
+            android:id="@+id/reviewBtn"
+            android:layout_width="157dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/button_click"
+            android:text="리뷰작성" />
+
+        <EditText
+            android:id="@+id/reviewText"
+            android:layout_width="299dp"
+            android:layout_height="319dp"
+            android:layout_marginBottom="50dp"
+            android:background="#56636161"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="리뷰를 작성해주세요"
+            android:inputType="textMultiLine" />
+    </LinearLayout>
+
+
+</RelativeLayout>
