@@ -18,6 +18,16 @@ public class MemberMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_member_main);
 
         final Button pickCuisineButton = (Button) findViewById(R.id.pickCuisineBtn);
+        final Button logoutButton = (Button) findViewById(R.id.logoutBtn);
+
+        logoutButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent mainIntent = new Intent(MemberMainActivity.this, MainActivity.class);
+                MemberMainActivity.this.startActivity(mainIntent);
+            }
+
+        });
 
         pickCuisineButton.setOnClickListener(new View.OnClickListener() {
             @Override

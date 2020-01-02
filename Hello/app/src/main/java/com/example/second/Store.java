@@ -25,7 +25,7 @@ public class Store extends Fragment {
         String restaurantAddress;
         String tel;
 
-        Bundle bundle = getArguments();
+        final Bundle bundle = getArguments();
 
         if (bundle != null) {
             restaurantName = bundle.getString("restaurantName");
@@ -47,8 +47,11 @@ public class Store extends Fragment {
         cameraBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent cameraIntent = new Intent(getActivity(), CameraActivity.class);
-                getActivity().startActivity(cameraIntent);
+                Intent uploadIntent = new Intent(getActivity(), GetUploadPhotoActivity.class);
+
+                String storeNum = bundle.getString("restaurantNum");
+                uploadIntent.getStringExtra(storeNum);
+                getActivity().startActivity(uploadIntent);
             }
         });
 

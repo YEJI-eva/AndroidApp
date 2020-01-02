@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MemberMainActivity"></activity>
+        <activity android:name=".GetUploadPhotoActivity"></activity>
+        <activity android:name=".MemberMainActivity" />
         <activity android:name=".ReviewWriteActivity" />
         <activity android:name=".PickWesternMenuActivity" />
         <activity android:name=".PickJapaneseMenuActivity" />

@@ -41,7 +41,7 @@ import java.util.List;
 
 public class Review extends Fragment {
 
-    private static String IP_ADDRESS = "192.168.43.231";
+    private static String IP_ADDRESS = "172.30.1.27";
     private static String TAG = "phptest";
 
     private ArrayList<ReviewData> mArrayList;
@@ -121,8 +121,6 @@ public class Review extends Fragment {
             progressDialog = ProgressDialog.show(getActivity(),
                     "Please Wait", null, true, true);
         }
-
-
 
         @Override
         protected String doInBackground(String... params) {

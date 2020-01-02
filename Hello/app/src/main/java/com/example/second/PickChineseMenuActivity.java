@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 public class PickChineseMenuActivity extends AppCompatActivity {
 
-    private static String IP_ADDRESS = "192.168.43.231";
+    private static String IP_ADDRESS = "172.30.1.27";
     private static String TAG = "phptest";
 
     private ArrayList<RestaurantData> mArrayList;
@@ -45,7 +45,10 @@ public class PickChineseMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pick_chinese_menu);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.listView_main_list);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setHasFixedSize(true);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setAutoMeasureEnabled(false);
+        mRecyclerView.setLayoutManager(llm);
 
         mArrayList = new ArrayList<RestaurantData>();
 

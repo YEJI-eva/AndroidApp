@@ -58,7 +58,7 @@ public class ReviewWriteActivity extends AppCompatActivity {
 
                 Intent intent = getIntent();
                 final String storeNum = intent.getStringExtra("storeNum");
-                String userName = intent.getStringExtra("userName");
+                final String userName = intent.getStringExtra("userName");
 
 
                 String review = reviewContent.getText().toString();
@@ -80,6 +80,7 @@ public class ReviewWriteActivity extends AppCompatActivity {
                                         .show();
                                 Intent intent = new Intent(ReviewWriteActivity.this, PickCuisineActivity.class);
                                 intent.putExtra("restaurantNum", storeNum);
+                                intent.putExtra("userName", userName);
                                 startActivity(intent);
                                 ReviewWriteActivity.this.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                             } else {
