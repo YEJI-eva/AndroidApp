@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,14 +36,16 @@ public class Store extends Fragment {
             Log.d("b", restaurantAddress);
             Log.d("c", tel);
 
+
             TextView textView = (TextView) view.findViewById(R.id.textView_store);
             String str = "이름: " + restaurantName + "\n" + "주소: " + restaurantAddress + "\n" + "전화번호: " + tel;
             Log.d("str : ", str);
 
+
             textView.setText(str);
+
         }
 
-        Button cameraBtn = (Button) view.findViewById(R.id.btn_goto_camera);
 
 //        cameraBtn.setOnClickListener(new View.OnClickListener(){
 //            @Override
