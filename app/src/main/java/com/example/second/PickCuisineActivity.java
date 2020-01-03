@@ -25,8 +25,11 @@ public class PickCuisineActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = getIntent();
                 String userName = intent.getStringExtra("userName");
+                String restaurantNum = intent.getStringExtra("restaurantNum");
+                Log.d("userName", userName);
                 Intent koreanIntent = new Intent(PickCuisineActivity.this, PickKoreanMenuActivity.class);
                 koreanIntent.putExtra("userName", userName);
+                koreanIntent.putExtra("restaurantNum", restaurantNum);
                 PickCuisineActivity.this.startActivity(koreanIntent);
             }
         });
@@ -35,9 +38,11 @@ public class PickCuisineActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = getIntent();
-                String userName = intent.getStringExtra("username");
+                String userName = intent.getStringExtra("userName");
+                String restaurantNum = intent.getStringExtra("restaurantNum");
                 Intent chineseIntent = new Intent(PickCuisineActivity.this, PickChineseMenuActivity.class);
                 chineseIntent.putExtra("userName", userName);
+                chineseIntent.putExtra("restaurantNum", restaurantNum);
                 PickCuisineActivity.this.startActivity(chineseIntent);
             }
         });
@@ -46,9 +51,11 @@ public class PickCuisineActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = getIntent();
-                String userName = intent.getStringExtra("username");
+                String userName = intent.getStringExtra("userName");
+                String restaurantNum = intent.getStringExtra("restaurantNum");
                 Intent japaneseIntent = new Intent(PickCuisineActivity.this, PickJapaneseMenuActivity.class);
                 japaneseIntent.putExtra("userName", userName);
+                japaneseIntent.putExtra("restaurantNum", restaurantNum);
                 PickCuisineActivity.this.startActivity(japaneseIntent);
             }
         });
@@ -57,9 +64,11 @@ public class PickCuisineActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = getIntent();
-                String userName = intent.getStringExtra("username");
+                String userName = intent.getStringExtra("userName");
+                String restaurantNum = intent.getStringExtra("restaurantNum");
                 Intent westernIntent = new Intent(PickCuisineActivity.this, PickWesternMenuActivity.class);
                 westernIntent.putExtra("userName", userName);
+                westernIntent.putExtra("restaurantNum", restaurantNum);
                 PickCuisineActivity.this.startActivity(westernIntent);
             }
         });

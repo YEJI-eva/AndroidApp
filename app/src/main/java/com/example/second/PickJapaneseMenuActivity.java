@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 public class PickJapaneseMenuActivity extends AppCompatActivity {
 
-    private static String IP_ADDRESS = "172.30.1.5";
+    private static String IP_ADDRESS = "192.168.0.133";
     private static String TAG = "phptest";
 
     private ArrayList<RestaurantData> mArrayList;
@@ -55,7 +55,7 @@ public class PickJapaneseMenuActivity extends AppCompatActivity {
         mArrayList.clear();
         mAdapter.notifyDataSetChanged();
 
-        PickJapaneseMenuActivity.GetData task = new PickJapaneseMenuActivity.GetData();
+        GetData task = new GetData();
         task.execute( "http://" + IP_ADDRESS + "/getJapaneseCuisine.php", "");
 
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), mRecyclerView, new ClickListener() {
@@ -65,7 +65,10 @@ public class PickJapaneseMenuActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), dict.getRestaurantName()+' '+dict.getAddress()+' '+dict.getTel(), Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(getBaseContext(), StoreInfoActivity.class);
-                String userName = intent.getStringExtra("userName");
+                // PickCuisine에서받은 userName은 가게정보 intent와 이름이 같기때문에 nameintent로 받은 다음
+                // intent에 다시 담아서 던져줍니다.
+                Intent nameintent = getIntent();
+                String userName = nameintent.getStringExtra("userName");
 
                 intent.putExtra("userName", userName);
                 intent.putExtra("restaurantNum", dict.getRegisterNum());
@@ -92,9 +95,9 @@ public class PickJapaneseMenuActivity extends AppCompatActivity {
     public static class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
 
         private GestureDetector gestureDetector;
-        private PickJapaneseMenuActivity.ClickListener clickListener;
+        private ClickListener clickListener;
 
-        public RecyclerTouchListener(Context context, final RecyclerView recyclerView, final PickJapaneseMenuActivity.ClickListener clickListener) {
+        public RecyclerTouchListener(Context context, final RecyclerView recyclerView, final ClickListener clickListener) {
             this.clickListener = clickListener;
             gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
                 @Override
@@ -210,7 +213,7 @@ public class PickJapaneseMenuActivity extends AppCompatActivity {
     private void showResult(){
 
         String TAG_JSON="japaneseFood";
-//        String TAG_registerNum = "registerNum";
+        String TAG_registerNum = "registerNum";
         String TAG_restaurantName = "restaurantName";
         String TAG_address = "address";
         String TAG_tel ="tel";
@@ -223,14 +226,14 @@ public class PickJapaneseMenuActivity extends AppCompatActivity {
 
                 JSONObject item = jsonArray.getJSONObject(i);
 
-//                String registerNum = item.getString(TAG_registerNum);
+                String registerNum = item.getString(TAG_registerNum);
                 String restaurantName = item.getString(TAG_restaurantName);
                 String address = item.getString(TAG_address);
                 String tel = item.getString(TAG_tel);
 
                 RestaurantData restaurantData = new RestaurantData();
 
-//                restaurantData.setRegisterNum(registerNum);
+                restaurantData.setRegisterNum(registerNum);
                 restaurantData.setRestaurantName(restaurantName);
                 restaurantData.setTel(tel);
                 restaurantData.setAddress(address);

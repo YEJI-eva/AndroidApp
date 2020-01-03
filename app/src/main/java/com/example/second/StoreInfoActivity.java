@@ -31,7 +31,7 @@ public class StoreInfoActivity extends AppCompatActivity {
     private LocationMap locationMap;
     private Store store;
     private Review review;
-//    private Myinfo Myinfo;
+    private Myinfo myinfo;
 
 
     @Override
@@ -53,8 +53,8 @@ public class StoreInfoActivity extends AppCompatActivity {
                     case R.id.bottomBarReview:
                         setFrag(2);
                         break;
-//                    case R.id.bottomBarMyinfo:
-//                        setFrag(3);
+                    case R.id.bottomBarMyinfo:
+                        setFrag(3);
                 }
                 return true;
             }
@@ -62,7 +62,7 @@ public class StoreInfoActivity extends AppCompatActivity {
         locationMap = new LocationMap();
         store = new Store();
         review = new Review();
-//        Myinfo= new Myinfo();
+        myinfo= new Myinfo();
         setFrag(0); // 첫 프래그먼트 화면을 무엇으로 지정해줄 것인지 선택.
     }
 
@@ -70,6 +70,7 @@ public class StoreInfoActivity extends AppCompatActivity {
     private void setFrag(int n) {
         Intent intent = getIntent();
         String userName = intent.getStringExtra("userName");
+        Log.d("userName", userName);
         String restaurantNum = intent.getStringExtra("restaurantNum");
         String restaurantName = intent.getStringExtra("restaurantName");
         String restaurantAddress = intent.getStringExtra("restaurantAddress");
@@ -85,7 +86,7 @@ public class StoreInfoActivity extends AppCompatActivity {
         store.setArguments(bundle);
         locationMap.setArguments(bundle);
         review.setArguments(bundle);
-//        Myinfo.setArguments(bundle);
+        myinfo.setArguments(bundle);
 
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
@@ -102,10 +103,10 @@ public class StoreInfoActivity extends AppCompatActivity {
                 ft.replace(R.id.main_frame, review);
                 ft.commit();
                 break;
-//            case 3:
-//                ft.replace(R.id.main_frame, Myinfo);
-//                ft.commit();
-//                break;
+            case 3:
+                ft.replace(R.id.main_frame, myinfo);
+                ft.commit();
+                break;
 
 
         }

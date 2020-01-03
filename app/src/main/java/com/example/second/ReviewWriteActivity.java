@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -37,7 +38,7 @@ public class ReviewWriteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_write);
 
-        final ConstraintLayout background = (ConstraintLayout) findViewById(R.id.background);
+        final LinearLayout background = (LinearLayout) findViewById(R.id.background);
         reviewContent = (EditText) findViewById(R.id.reviewText);
         rating = (RatingBar) findViewById(R.id.ratingBar);
 
@@ -58,7 +59,7 @@ public class ReviewWriteActivity extends AppCompatActivity {
 
                 Intent intent = getIntent();
                 final String storeNum = intent.getStringExtra("storeNum");
-                String userName = intent.getStringExtra("userName");
+                final String userName = intent.getStringExtra("userName");
 
 
                 String review = reviewContent.getText().toString();
@@ -80,6 +81,7 @@ public class ReviewWriteActivity extends AppCompatActivity {
                                         .show();
                                 Intent intent = new Intent(ReviewWriteActivity.this, PickCuisineActivity.class);
                                 intent.putExtra("restaurantNum", storeNum);
+                                intent.putExtra("userName", userName);
                                 startActivity(intent);
                                 ReviewWriteActivity.this.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                             } else {

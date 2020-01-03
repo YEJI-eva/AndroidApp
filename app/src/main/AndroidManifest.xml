@@ -16,7 +16,7 @@
     <application
         android:usesCleartextTraffic="true"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="Third"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -44,7 +44,7 @@
         <activity android:name=".PickCuisineActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
-<!--        <activity android:name=".Myinfo" />-->
+        <activity android:name=".Myinfo" />
         <activity android:name=".StoreInfoActivity" />
 <!--        <activity android:name=".CameraActivity" />-->
 
