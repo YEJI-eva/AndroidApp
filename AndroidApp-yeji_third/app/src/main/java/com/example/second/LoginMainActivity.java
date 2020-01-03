@@ -7,11 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.second.LoginActivity;
-import com.example.second.PickCuisineActivity;
-import com.example.second.R;
-
 public class LoginMainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +34,20 @@ public class LoginMainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // 로그인하면서 던진 username을 받아서 다시 PickCusineActivity로 던져줍니다.
                 Intent intent = getIntent();
-                String userName = intent.getStringExtra("username");
+                String userName = intent.getStringExtra("userName");
 
                 Intent pickCuisineIntent = new Intent(LoginMainActivity.this, PickCuisineActivity.class);
                 pickCuisineIntent.putExtra("userName", userName);
                 LoginMainActivity.this.startActivity(pickCuisineIntent);
             }
         });
-
     }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
+    }
+
 }

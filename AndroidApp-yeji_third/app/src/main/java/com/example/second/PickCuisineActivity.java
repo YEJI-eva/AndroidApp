@@ -26,7 +26,6 @@ public class PickCuisineActivity extends AppCompatActivity {
                 Intent intent = getIntent();
                 String userName = intent.getStringExtra("userName");
                 String restaurantNum = intent.getStringExtra("restaurantNum");
-                Log.d("userName", userName);
                 Intent koreanIntent = new Intent(PickCuisineActivity.this, PickKoreanMenuActivity.class);
                 koreanIntent.putExtra("userName", userName);
                 koreanIntent.putExtra("restaurantNum", restaurantNum);

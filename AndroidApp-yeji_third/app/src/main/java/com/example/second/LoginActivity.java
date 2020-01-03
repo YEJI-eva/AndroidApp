@@ -120,7 +120,9 @@ public class LoginActivity extends Activity {
                                 intent.putExtra("password", password);
                                 intent.putExtra("username", userName);
                                 // 로그인하면 메인액티비티로 username을 던져줍니다.
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 LoginActivity.this.startActivity(intent);
+
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                                 builder.setMessage("로그인에 실패하셨습니다.")

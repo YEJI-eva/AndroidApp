@@ -39,7 +39,7 @@ import java.util.ArrayList;
 
 public class Myinfo extends Fragment {
 
-    private static String IP_ADDRESS = "172.30.1.5";
+    private static String IP_ADDRESS = "192.168.0.50";
     private static String TAG = "phptest";
 
     private ArrayList<MyinfoData> mArrayList;
@@ -53,8 +53,7 @@ public class Myinfo extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.review, container, false);
-
+        view = inflater.inflate(R.layout.myinfo, container, false);
 
 
         Bundle bundle = getArguments();
@@ -69,9 +68,11 @@ public class Myinfo extends Fragment {
         mArrayList.clear();
         mAdapter.notifyDataSetChanged();
 
+        String userName = (String) bundle.getString("userName");
         // 여기서 php로 보낼 값을 담아줍니다.
+
         Myinfo.GetData task = new Myinfo.GetData();
-        task.execute( "http://" + IP_ADDRESS + "/getMyinfo.php", "");
+        task.execute( "http://" + IP_ADDRESS + "/getMyinfo.php", userName);
 
         return view;
     }
@@ -96,8 +97,8 @@ public class Myinfo extends Fragment {
         protected String doInBackground(String... params) {
             // 위에서 php로 보내기위해 담은 값을 찾아 줍니다.
             String serverURL = params[0];
-            String storeNum = (String) params[1];
-            String postParameters = "storeNum=" + storeNum;
+            String userName = (String) params[1];
+            String postParameters = "userName=" + userName;
             Log.d("@@@param[1]@@@", postParameters);
 
             try {
