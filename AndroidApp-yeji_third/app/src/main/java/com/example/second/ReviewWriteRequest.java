@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class ReviewWriteRequest extends StringRequest {
     //서버 URL설정 (PHP파일 연동)
-    final static private String URL="http://192.168.0.50/writeReview.php";
+    final static private String URL="http://192.168.0.4/writeReview.php";
     private Map<String, String> parameters;
 
     public ReviewWriteRequest(String storeNum, String userName, String review, String rate, Response.Listener<String> listener) {
