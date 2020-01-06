@@ -1,10 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#E91E63</color>
-    <color name="colorPrimaryDark">#C2185B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FFFFFF</color>
     <color name="colorOrange">#F2B32A</color>
-    
+    <color name="fbutton_color_wisteria">#673AB7</color>
+
+
+
+    <!-- 1st Gradient color -->
+    <color name="colorPurple_A400">#D500F9</color>
+    <color name="colorPurple_900">#4A148C</color>
+    <!-- ./ 1st Gradient color -->
+
+    <!-- 2nd Gradient color -->
+    <color name="colorAmber_A400">#FFC400</color>
+    <color name="colorAmber_900">#FF6F00</color>
+    <!-- ./ 2nd Gradient color -->
+
+    <!-- 3rd Gradient color -->
+    <color name="colorGreen_A400">#00E676</color>
+    <color name="colorGreen_900">#1B5E20</color>
+    <!-- ./ 3rd Gradient color -->
+
+    <!-- 4th Gradient color -->
+    <color name="colorRed_A400">#FF1744</color>
+    <color name="colorRed_900">#B71C1C</color>
+
+    <!-- ./ 4th Gradient color -->
     <color name="fbutton_default_color">#3eadeb</color>
     <color name="fbutton_default_shadow_color">#ff3493c8</color>
     //Color Swatches provided by http://designmodo.github.io/Flat-UI/
@@ -15,7 +38,6 @@
     <color name="fbutton_color_peter_river">#3498db</color>
     <color name="fbutton_color_belize_hole">#FAAEC8</color>
     <color name="fbutton_color_amethyst">#9b59b6</color>
-    <color name="fbutton_color_wisteria">#8e44ad</color>
     <color name="fbutton_color_wet_asphalt">#34495e</color>
     <color name="fbutton_color_midnight_blue">#2c3e50</color>
     <color name="fbutton_color_sun_flower">#f1c40f</color>
