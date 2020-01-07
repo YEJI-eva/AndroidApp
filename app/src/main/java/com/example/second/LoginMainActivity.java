@@ -26,7 +26,8 @@ public class LoginMainActivity extends AppCompatActivity {
         logoutButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent loginIntent = new Intent(LoginMainActivity.this, LoginActivity.class);
+                Intent loginIntent = new Intent(LoginMainActivity.this, MainActivity.class); // 로그아웃누르면 메인으로 돌아가게 바뀜
+
                 LoginMainActivity.this.startActivity(loginIntent);
             }
 

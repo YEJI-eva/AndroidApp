@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
-    android:background="#FFFFFF"
+    android:background="@drawable/button_click2"
     android:gravity="center_vertical"
     android:orientation="vertical"
     android:paddingLeft="5dp"
@@ -27,7 +27,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
-            android:background="#03A9F4"
+            android:background="@drawable/text1"
             android:gravity="left"
             android:padding="5dp"
             android:textAlignment="gravity"
@@ -43,7 +43,8 @@
             android:layout_marginBottom="5dp"
             android:gravity="left"
             android:padding="5dp"
-            android:textAlignment="gravity" />
+            android:textAlignment="gravity"
+            />
 
         <TextView
             android:id="@+id/textView_list_tel"

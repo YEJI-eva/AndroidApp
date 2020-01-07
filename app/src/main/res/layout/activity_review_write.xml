@@ -3,9 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="10dp"
-    android:background="#FFFFFF"
+    android:background="@drawable/review"
     android:orientation="vertical"
     android:paddingLeft="10dp"
     android:paddingTop="5dp"
@@ -17,19 +15,28 @@
         android:id="@+id/background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="리뷰"
+            android:textSize="40dp"
+            android:textColor="#000000"
+            android:layout_marginTop="30dp"
+            />
+
+        <TextView
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
-            android:layout_weight="1"
+            android:layout_marginTop="30dp"
             android:fontFamily="sans-serif-black"
             android:gravity="center"
-            android:text="별점을 입력해주세요" />
+            android:textSize="25dp"
+            android:text="별점을 입력해주세요"
+            android:textColor="#EC84C1"/>
 
         <RatingBar
             android:id="@+id/ratingBar"
@@ -40,25 +47,27 @@
             android:numStars="5"
             android:rating="0" />
 
-        <Button
-            android:id="@+id/reviewBtn"
-            android:layout_width="157dp"
-            android:layout_height="49dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/button_click"
-            android:text="리뷰작성" />
-
         <EditText
             android:id="@+id/reviewText"
-            android:layout_width="299dp"
-            android:layout_height="319dp"
-            android:layout_marginBottom="50dp"
-            android:background="#56636161"
+            android:layout_width="350dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/text"
             android:ems="10"
             android:gravity="start|top"
-            android:hint="리뷰를 작성해주세요"
+            android:hint="  리뷰를 작성해주세요"
+
             android:inputType="textMultiLine" />
+
+        <Button
+            android:id="@+id/reviewBtn"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/button_click2"
+            android:text="확인"
+            android:textSize="30dp" />
+
     </LinearLayout>
 
 

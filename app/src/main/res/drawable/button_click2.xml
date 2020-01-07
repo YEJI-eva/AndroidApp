@@ -2,7 +2,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:padding="10dp"
     android:shape="rectangle" >
-    <solid android:color="@color/fbutton_color_turquoise" />
+    <solid  />
     <corners
         android:bottomLeftRadius="12dp"
         android:bottomRightRadius="12dp"
@@ -10,5 +10,5 @@
         android:topRightRadius="12dp" />
     <stroke
         android:width="2dp"
-        android:color="@color/colorOrange" />
+        />
 </shape>

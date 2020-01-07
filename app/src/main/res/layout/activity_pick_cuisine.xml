@@ -4,79 +4,77 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PickCuisineActivity">
-
-    <Button
-        android:id="@+id/koreanBtn"
-        android:layout_width="125dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="180dp"
-        android:background="@drawable/button_background"
-        android:minHeight="@dimen/demo_button_min_height"
-        android:minWidth="@dimen/demo_button_min_width"
-        android:text="한식"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.213"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/chineseBtn"
-        android:layout_width="125dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="180dp"
-        android:background="@drawable/button_background"
-        android:minHeight="@dimen/demo_button_min_height"
-        android:minWidth="@dimen/demo_button_min_width"
-        android:text="중식"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.758"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/japaneseBtn"
-        android:layout_width="125dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="340dp"
-        android:background="@drawable/button_background"
-        android:minWidth="@dimen/demo_button_min_width"
-        android:minHeight="@dimen/demo_button_min_height"
-        android:text="일식"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.213"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/westernBtn"
-        android:layout_width="125dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="340dp"
-        android:background="@drawable/button_background"
-        android:text="양식"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.758"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context=".PickCuisineActivity"
+    android:background="@drawable/cusin">
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:text="Pick a Cuisine"
-        android:textSize="30sp"
+        android:layout_marginTop="70dp"
+        android:text="선택하세요!"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/koreanBtn"
+        android:layout_width="145dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="150dp"
+        android:background="@drawable/button_click2"
+        android:minHeight="@dimen/demo_button_min_height"
+        android:minWidth="@dimen/demo_button_min_width"
+        android:text="한식"
+        android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/chineseBtn"
+        android:layout_width="145dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="150dp"
+        android:background="@drawable/button_click2"
+        android:text="중식"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/japaneseBtn"
+        android:layout_width="145dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="305dp"
+        android:background="@drawable/button_click2"
+        android:text="일식"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/westernBtn"
+        android:layout_width="145dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="305dp"
+        android:background="@drawable/button_click2"
+        android:text="양식"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -8,8 +8,9 @@
         android:id="@+id/writeReview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_click"
-        android:text="리뷰쓰기" />
+        android:background="@drawable/button_click2"
+        android:text="리뷰쓰기"
+        android:textSize="25dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/review_list"

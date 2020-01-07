@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,7 +29,7 @@ public class MyinfoAdapter extends RecyclerView.Adapter<MyinfoAdapter.CustomView
             protected TextView userName;
             protected TextView reviewContent;
             protected TextView regDate;
-            protected TextView rate;
+            protected RatingBar ratingBar;
 
 
             public CustomViewHolder(View view) {
@@ -36,7 +37,8 @@ public class MyinfoAdapter extends RecyclerView.Adapter<MyinfoAdapter.CustomView
                 this.userName = (TextView) view.findViewById(R.id.textView_list_userName);
                 this.reviewContent = (TextView) view.findViewById(R.id.textView_list_reviewContent);
                 this.regDate = (TextView) view.findViewById(R.id.textView_list_regDate);
-                this.rate = (TextView) view.findViewById(R.id.textView_list_rate);
+                this.ratingBar = (RatingBar) view.findViewById(R.id.ratingBar);
+                ratingBar.setIsIndicator(true);
             }
         }
 
@@ -54,7 +56,9 @@ public class MyinfoAdapter extends RecyclerView.Adapter<MyinfoAdapter.CustomView
             viewHolder.userName.setText(mList.get(position).getUserName());
             viewHolder.reviewContent.setText(mList.get(position).getReviewContent());
             viewHolder.regDate.setText(mList.get(position).getRegDate());
-            viewHolder.rate.setText(mList.get(position).getRate());
+            String rate = mList.get(position).getRate();
+            Float rating = Float.parseFloat(rate);
+            viewHolder.ratingBar.setRating(rating);
 
         }
 

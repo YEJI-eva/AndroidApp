@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/main">
 
 
     <TextView
@@ -13,10 +14,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
         android:text="오늘 뭐먹지?"
-        android:textSize="30sp"
-
+        android:textSize="50dp"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,18 +28,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars[0]" />
+        android:src="@drawable/icon_none" />
 
     <Button
         android:id="@+id/logoutBtn"
         android:layout_width="170dp"
         android:layout_height="60dp"
         android:layout_marginTop="348dp"
+        android:background="@drawable/button_click2"
         android:text="LOGOUT"
         android:textStyle="bold"
-        android:background="@drawable/button_click"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.066"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,12 +47,12 @@
         android:id="@+id/pickCuisineBtn"
         android:layout_width="170dp"
         android:layout_height="60dp"
-        android:layout_marginTop="444dp"
+        android:layout_marginTop="348dp"
+        android:background="@drawable/button_click2"
         android:text="SELECT MENU"
         android:textStyle="bold"
-        android:background="@drawable/button_click"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.887"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

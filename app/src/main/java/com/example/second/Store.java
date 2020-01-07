@@ -123,7 +123,7 @@ public class Store extends Fragment {
 
             progressDialog.dismiss();
             mTextViewResult.setText(result);
-            Log.d(TAG, "response - " + result);
+            Log.d(TAG, "response  - " + result);
 
             if (result == null){
                 mTextViewResult.setText(errorString);

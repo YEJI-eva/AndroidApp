@@ -92,6 +92,7 @@ public class LocationMap extends Fragment implements OnMapReadyCallback {
     public void onDestroy() {
         super.onDestroy();
         mapView.onLowMemory();
+        super.onStop();
     }
 
     @Override

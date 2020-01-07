@@ -15,8 +15,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#A0D7DC"
-        android:orientation="vertical">
+        android:background="@drawable/text1"
+        android:orientation="vertical"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,6 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
+                android:layout_marginLeft="10dp"
                 android:numStars="5"
                 android:rating="0" />
 
@@ -41,6 +43,8 @@
                 android:layout_marginRight="5dp"
                 android:gravity="right"
                 android:padding="5dp"
+                android:textSize="25dp"
+                android:textStyle="bold"
                 android:textAlignment="gravity" />
 
         </LinearLayout>
@@ -58,7 +62,9 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="작성자"
-                android:textAlignment="gravity" />
+                android:textAlignment="gravity"
+                android:textSize="15dp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/textView_list_userName"
@@ -66,7 +72,9 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:padding="5dp"
-                android:textAlignment="gravity" />
+                android:textAlignment="gravity"
+                android:textSize="25dp"
+                android:textStyle="bold"/>
 
         </LinearLayout>
 
@@ -76,7 +84,9 @@
             android:layout_height="wrap_content"
             android:gravity="left"
             android:padding="5dp"
-            android:textAlignment="gravity" />
+            android:textAlignment="gravity"
+            android:textSize="25dp"
+            android:textStyle="bold"/>
     </LinearLayout>
 
 </RelativeLayout>

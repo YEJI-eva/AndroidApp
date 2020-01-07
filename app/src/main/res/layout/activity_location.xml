@@ -11,14 +11,13 @@
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="602dp"
+        android:layout_height="match_parent"
         tools:context=".Location" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavi"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:itemIconTint="#000000"
+        android:layout_height="wrap_content"
         app:itemTextColor="#000000"
        />
 
