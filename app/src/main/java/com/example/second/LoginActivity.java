@@ -140,7 +140,7 @@ public class LoginActivity extends Activity {
         });
     }
 
-    // 빈화면이나 로그인 버튼을 눌렀을때도 키보드 내려가도록 함
+    // 빈화면이나 로그인 버튼을 눌렀을 때도 키보드 내려가도록 함
     View.OnClickListener myClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v)
