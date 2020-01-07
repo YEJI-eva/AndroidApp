@@ -40,6 +40,7 @@
      -  실시간 위치 기반 Animated Marker Position 구현
      -  공공API를 이용한 음식점 데이터 크롤링
      -  메인 로고 Splash 기능 구현
+     -  프로젝트 PPT 및 개요 작성
 
 
 </br>
@@ -78,9 +79,9 @@
 
  - ##### 임채빈
    - Work 
-     -  Firebase 기반 Google Login API 연동
+     -  Firebase 기반 구글 로그인 API
      -  앱 전체 UX/UI 설계
-     -  DB Schema 사전 
+     -  DB Schema 사전 설계
 </br>
 
 </br>
