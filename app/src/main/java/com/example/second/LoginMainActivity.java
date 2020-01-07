@@ -18,7 +18,7 @@ public class LoginMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_smain);
 
-        final Button logoutButton = (Button) findViewById(R.id.logoutBtn);
+        final Button logoutButton = (Button) findViewById(R.id.logoutBtn); //로그아웃
         final Button pickCuisineButton = (Button) findViewById(R.id.pickCuisineBtn);
 
 
