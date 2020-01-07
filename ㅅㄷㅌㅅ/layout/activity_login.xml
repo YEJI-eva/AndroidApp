@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/background"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/peng"
+    >
+
+    <!--    <LinearLayout-->
+<!--        android:id="@+id/linearLayout2"-->
+<!--        android:layout_width="fill_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:gravity="center"-->
+<!--        android:orientation="horizontal" >-->
+
+<!--        <Button-->
+<!--            android:id="@+id/buttonOAuth"-->
+<!--            style="@style/Button.Menu"-->
+<!--            android:text="인증하기" />-->
+<!--        <Button-->
+<!--            android:id="@+id/buttonOAuthLogout"-->
+<!--            style="@style/Button.Menu"-->
+<!--            android:text="로그아웃" />-->
+<!--        <Button-->
+<!--            android:id="@+id/buttonOAuthDeleteToken"-->
+<!--            style="@style/Button.Menu"-->
+<!--            android:text="연동끊기" />-->
+
+<!--    </LinearLayout>-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="2dp"
+        tools:context=".LoginActivity">
+
+
+        <EditText
+            android:id="@+id/emailText"
+            android:layout_width="285dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="30dp"
+            android:ems="10"
+            android:hint="이메일"
+            android:inputType="textPersonName"
+            android:textColorHighlight="#000000"
+            android:textColorHint="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/passwordText"
+            android:layout_width="285dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="30dp"
+            android:ems="10"
+            android:hint="패스워드"
+            android:inputType="textPassword"
+            android:textColorHighlight="#000000"
+            android:textColorHint="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailText" />
+
+        <Button
+            android:id="@+id/loginBtn"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/button_click2"
+            android:text="로그인"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordText" />
+
+        <Button
+            android:id="@+id/joinBtn"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/button_click2"
+            android:text="회원가입"
+            android:textColor="#000000"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
+
+        <com.nhn.android.naverlogin.ui.view.OAuthLoginButton
+            android:id="@+id/buttonOAuthLoginImg"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="200dp"
+            app:layout_constraintEnd_toEndOf="@+id/passwordText"
+            app:layout_constraintStart_toStartOf="@+id/passwordText"
+            app:layout_constraintTop_toBottomOf="@+id/joinBtn" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1" >
+        <TextView
+            android:id="@+id/api_result_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
+</RelativeLayout>
